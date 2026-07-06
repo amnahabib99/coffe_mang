@@ -21,7 +21,17 @@ Install and start MySQL locally. The default connection is configured in `Databa
 - Username: `root`
 - Password: empty
 
-Edit `src/main/java/com/coffeeshop/database/DatabaseConfig.java` if your MySQL password is different.
+Set your MySQL password locally before running the app:
+
+```powershell
+$env:COFFEE_DB_PASSWORD="your_mysql_password"
+```
+
+You can also pass it as a JVM property:
+
+```bash
+mvn exec:java -Dcoffee.db.password=your_mysql_password
+```
 
 The app creates the database, tables, and seed data automatically.
 

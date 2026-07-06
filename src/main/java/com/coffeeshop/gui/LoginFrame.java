@@ -96,7 +96,6 @@ public class LoginFrame extends JFrame {
     private void login() {
         try {
             User user = authService.login(usernameField.getText(), new String(passwordField.getPassword()));
-            JOptionPane.showMessageDialog(this, "مرحبًا " + user.getName());
             new MainFrame().setVisible(true);
             dispose();
         } catch (Exception ex) {

@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.border.MatteBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -237,7 +238,7 @@ public final class UiTheme {
         renderer.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         table.setDefaultRenderer(Object.class, renderer);
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font(FONT_NAME, Font.BOLD, 14));
+        header.setFont(new Font(FONT_NAME, Font.BOLD, 15));
         header.setBackground(Color.WHITE);
         header.setForeground(Color.BLACK);
         header.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -246,8 +247,10 @@ public final class UiTheme {
         headerRenderer.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         headerRenderer.setBackground(Color.WHITE);
         headerRenderer.setForeground(Color.BLACK);
-        headerRenderer.setFont(new Font(FONT_NAME, Font.BOLD, 14));
+        headerRenderer.setFont(new Font(FONT_NAME, Font.BOLD, 15));
+        headerRenderer.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
         header.setDefaultRenderer(headerRenderer);
+        header.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
     }
 
     /**

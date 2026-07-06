@@ -7,6 +7,7 @@ import com.coffeeshop.services.UserService;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,11 +26,13 @@ public class UserManagementPanel extends JPanel {
     private final JTable table = new JTable(model);
     private final JComboBox<UserRole> roleBox = new JComboBox<>(UserRole.values());
     private final List<User> users = new ArrayList<>();
+    private final JFrame owner;
 
     /**
      * Creates the user management panel.
      */
-    public UserManagementPanel() {
+    public UserManagementPanel(JFrame owner) {
+        this.owner = owner;
         setLayout(new BorderLayout(8, 8));
         UiTheme.page(this);
         add(UiTheme.title("إدارة المستخدمين والتحقق"), BorderLayout.NORTH);
@@ -39,22 +42,31 @@ public class UserManagementPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         JPanel buttons = new JPanel();
         buttons.setBackground(UiTheme.BACKGROUND);
+        JButton register = new JButton("إنشاء حساب");
         JButton activate = new JButton("تفعيل");
         JButton deactivate = new JButton("إيقاف");
         JButton changeRole = new JButton("تغيير الدور");
+        UiTheme.button(register, true);
         UiTheme.button(activate, true);
         UiTheme.dangerButton(deactivate);
         UiTheme.button(changeRole, false);
         UiTheme.combo(roleBox);
+        buttons.add(register);
         buttons.add(activate);
         buttons.add(deactivate);
         buttons.add(roleBox);
         buttons.add(changeRole);
         add(buttons, BorderLayout.SOUTH);
+        register.addActionListener(event -> openRegisterDialog());
         activate.addActionListener(event -> updateStatus(UserStatus.ACTIVE));
         deactivate.addActionListener(event -> updateStatus(UserStatus.INACTIVE));
         changeRole.addActionListener(event -> changeRole());
         UiTheme.rtl(this);
+        refresh();
+    }
+
+    private void openRegisterDialog() {
+        new RegisterDialog(owner).setVisible(true);
         refresh();
     }
 

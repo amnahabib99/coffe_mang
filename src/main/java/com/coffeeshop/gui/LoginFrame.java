@@ -30,6 +30,7 @@ public class LoginFrame extends JFrame {
         setTitle("تسجيل الدخول - نظام إدارة المقهى");
         setSize(620, 360);
         setMinimumSize(new Dimension(560, 330));
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(UiTheme.BACKGROUND);
@@ -70,16 +71,13 @@ public class LoginFrame extends JFrame {
         form.add(passwordField);
 
         JButton loginButton = new JButton("دخول");
-        JButton registerButton = new JButton("إنشاء حساب");
         JButton forgotButton = new JButton("نسيت كلمة المرور");
         UiTheme.button(loginButton, true);
-        UiTheme.button(registerButton, false);
         UiTheme.button(forgotButton, false);
 
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
         actions.setBackground(UiTheme.BACKGROUND);
         actions.add(loginButton);
-        actions.add(registerButton);
         actions.add(forgotButton);
 
         JPanel formCard = UiTheme.card(form);
@@ -92,7 +90,6 @@ public class LoginFrame extends JFrame {
         UiTheme.rtl(getContentPane());
 
         loginButton.addActionListener(event -> login());
-        registerButton.addActionListener(event -> new RegisterDialog(this).setVisible(true));
         forgotButton.addActionListener(event -> new ForgotPasswordDialog(this).setVisible(true));
     }
 

@@ -23,7 +23,7 @@ public final class DatabaseManager {
         try {
             return DriverManager.getConnection(DatabaseConfig.DATABASE_URL, DatabaseConfig.USERNAME, DatabaseConfig.PASSWORD);
         } catch (SQLException ex) {
-            throw new DatabaseConnectionException("Cannot connect to MySQL. Check that MySQL is running and credentials are correct.", ex);
+            throw new DatabaseConnectionException("تعذر الاتصال بقاعدة بيانات MySQL. تأكد من تشغيل MySQL وصحة بيانات الدخول.", ex);
         }
     }
 
@@ -37,7 +37,7 @@ public final class DatabaseManager {
         try {
             return DriverManager.getConnection(DatabaseConfig.SERVER_URL, DatabaseConfig.USERNAME, DatabaseConfig.PASSWORD);
         } catch (SQLException ex) {
-            throw new DatabaseConnectionException("Cannot connect to MySQL server. Start MySQL or update DatabaseConfig.", ex);
+            throw new DatabaseConnectionException("تعذر الاتصال بخادم MySQL. شغل MySQL أو راجع إعدادات الاتصال.", ex);
         }
     }
 }

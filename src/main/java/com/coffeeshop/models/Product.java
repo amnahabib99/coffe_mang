@@ -21,7 +21,7 @@ public class Product {
      * @throws InvalidInputException when data is invalid
      */
     public Product(String name, Category category, double price) throws InvalidInputException {
-        this(0, name, category, price, "Regular", ProductStatus.AVAILABLE);
+        this(0, name, category, price, "عادي", ProductStatus.AVAILABLE);
     }
 
     /**
@@ -41,7 +41,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return name + " - " + size + " ($" + String.format("%.2f", price) + ")";
+        return name + " - " + size + " (" + String.format("%.2f", price) + ")";
     }
 
     public int getId() {
@@ -57,7 +57,7 @@ public class Product {
     }
 
     public final void setName(String name) throws InvalidInputException {
-        ValidationUtils.requireText(name, "Product name");
+        ValidationUtils.requireText(name, "اسم المنتج");
         this.name = name.trim();
     }
 
@@ -67,7 +67,7 @@ public class Product {
 
     public final void setCategory(Category category) throws InvalidInputException {
         if (category == null || category.getId() <= 0) {
-            throw new InvalidInputException("Product must belong to a saved category.");
+            throw new InvalidInputException("يجب أن يرتبط المنتج بتصنيف محفوظ.");
         }
         this.category = category;
     }
@@ -77,7 +77,7 @@ public class Product {
     }
 
     public final void setPrice(double price) throws InvalidInputException {
-        ValidationUtils.requirePositive(price, "Price");
+        ValidationUtils.requirePositive(price, "السعر");
         this.price = price;
     }
 

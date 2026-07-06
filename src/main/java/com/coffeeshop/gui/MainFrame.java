@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
      */
     public MainFrame() {
         User user = SessionManager.getCurrentUser();
-        setTitle("Coffee Shop Management System - " + user);
+        setTitle("نظام إدارة المقهى - " + user);
         setSize(1100, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,22 +27,22 @@ public class MainFrame extends JFrame {
 
     private void buildTabs(User user) {
         JTabbedPane tabs = new JTabbedPane();
-        tabs.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
+        tabs.setFont(new java.awt.Font(UiTheme.FONT_NAME, java.awt.Font.BOLD, 14));
         tabs.setBackground(UiTheme.BACKGROUND);
         tabs.setForeground(UiTheme.TEXT);
         tabs.setOpaque(true);
-        tabs.addTab("Home", new HomePanel());
+        tabs.addTab("الرئيسية", new HomePanel());
         if (user.getRole() == UserRole.MANAGER) {
-            tabs.addTab("Categories", new CategoryPanel());
-            tabs.addTab("Products", new ProductPanel());
+            tabs.addTab("التصنيفات", new CategoryPanel());
+            tabs.addTab("المنتجات", new ProductPanel());
         }
-        tabs.addTab("Orders", new OrderPanel());
-        tabs.addTab("Invoices", new InvoicePanel());
-        tabs.addTab("Reports", new ReportsPanel());
+        tabs.addTab("الطلبات", new OrderPanel());
+        tabs.addTab("الفواتير", new InvoicePanel());
+        tabs.addTab("التقارير", new ReportsPanel());
         if (user.getRole() == UserRole.MANAGER) {
-            tabs.addTab("User Management", new UserManagementPanel());
+            tabs.addTab("إدارة المستخدمين", new UserManagementPanel());
         }
-        tabs.addTab("Account Settings", new AccountSettingsPanel(this));
+        tabs.addTab("إعدادات الحساب", new AccountSettingsPanel(this));
         add(tabs);
     }
 }

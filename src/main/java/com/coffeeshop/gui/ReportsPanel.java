@@ -25,13 +25,13 @@ public class ReportsPanel extends JPanel {
     public ReportsPanel() {
         setLayout(new BorderLayout());
         UiTheme.page(this);
-        JButton refreshButton = new JButton("Build Reports");
+        JButton refreshButton = new JButton("إنشاء التقرير");
         UiTheme.button(refreshButton, true);
         area.setEditable(false);
         UiTheme.textArea(area);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
-        top.add(UiTheme.title("Reports"), BorderLayout.WEST);
+        top.add(UiTheme.title("التقارير"), BorderLayout.WEST);
         top.add(refreshButton, BorderLayout.EAST);
         add(top, BorderLayout.NORTH);
         JScrollPane scrollPane = new JScrollPane(area);
@@ -50,11 +50,11 @@ public class ReportsPanel extends JPanel {
                 count++;
                 sales += order.getTotal();
             }
-            builder.append("Orders completed: ").append(count).append('\n');
-            builder.append("Total sales: ").append(String.format("%.2f", sales));
+            builder.append("عدد الطلبات المكتملة: ").append(count).append('\n');
+            builder.append("إجمالي المبيعات: ").append(String.format("%.2f", sales));
             area.setText(builder.toString());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Report Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في التقارير", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

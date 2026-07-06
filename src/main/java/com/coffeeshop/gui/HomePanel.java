@@ -19,13 +19,13 @@ public class HomePanel extends JPanel {
         setLayout(new BorderLayout());
         UiTheme.page(this);
         User user = SessionManager.getCurrentUser();
-        add(UiTheme.title("Welcome, " + user.getName()), BorderLayout.NORTH);
+        add(UiTheme.title("مرحبًا، " + user.getName()), BorderLayout.NORTH);
         JTextArea area = new JTextArea();
         UiTheme.textArea(area);
         area.setEditable(false);
-        area.setText(user.getRoleDescription() + "\n\nRole: " + user.getRole().getLabel()
-                + "\n\nManager features:\n- Categories\n- Products\n- User Management\n- Reports\n- Invoices\n- Orders\n\n"
-                + "Employee features:\n- Orders\n- Invoices\n- Account Settings");
+        area.setText(user.getRoleDescription() + "\n\nالدور: " + user.getRole()
+                + "\n\nصلاحيات المدير:\n- إدارة التصنيفات\n- إدارة المنتجات\n- إدارة المستخدمين\n- التقارير\n- الفواتير\n- الطلبات\n\n"
+                + "صلاحيات الموظف:\n- إنشاء الطلبات\n- عرض الفواتير\n- إعدادات الحساب");
         add(UiTheme.card(area), BorderLayout.CENTER);
     }
 }

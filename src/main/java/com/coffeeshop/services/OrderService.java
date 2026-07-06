@@ -28,7 +28,7 @@ public class OrderService {
     public Order startOrder() throws OrderProcessingException {
         User user = SessionManager.getCurrentUser();
         if (user == null) {
-            throw new OrderProcessingException("You must log in before creating an order.");
+            throw new OrderProcessingException("يجب تسجيل الدخول قبل إنشاء طلب.");
         }
         return new Order(user);
     }
@@ -40,13 +40,13 @@ public class OrderService {
      */
     public void addProduct(Order order, Product product, int quantity) throws OrderProcessingException {
         if (order == null) {
-            throw new OrderProcessingException("Start an order first.");
+            throw new OrderProcessingException("ابدأ طلبًا جديدًا أولًا.");
         }
         if (product == null || product.getStatus() != ProductStatus.AVAILABLE) {
-            throw new OrderProcessingException("Selected product is not available.");
+            throw new OrderProcessingException("المنتج المحدد غير متوفر.");
         }
         if (quantity <= 0) {
-            throw new OrderProcessingException("Quantity must be greater than zero.");
+            throw new OrderProcessingException("الكمية يجب أن تكون أكبر من صفر.");
         }
         order.addItem(product, quantity);
     }
@@ -61,7 +61,7 @@ public class OrderService {
      */
     public Order completeOrder(Order order, Customer customer) throws Exception {
         if (order == null || order.getItems().isEmpty()) {
-            throw new OrderProcessingException("Order must contain at least one item.");
+            throw new OrderProcessingException("يجب أن يحتوي الطلب على منتج واحد على الأقل.");
         }
         double discount = customer instanceof VIPCustomer vip ? vip.calculateDiscount(order.getSubtotal()) : 0;
         order.setCustomer(customer);

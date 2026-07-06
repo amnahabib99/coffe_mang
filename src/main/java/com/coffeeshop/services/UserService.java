@@ -37,7 +37,7 @@ public class UserService {
      */
     public void updateStatus(int id, UserStatus status) throws Exception {
         requireManager();
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found."));
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("المستخدم غير موجود."));
         user.setStatus(status);
         userRepository.update(user);
     }
@@ -51,7 +51,7 @@ public class UserService {
      */
     public void updateRole(int id, UserRole role) throws Exception {
         requireManager();
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found."));
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("المستخدم غير موجود."));
         user.setRole(role);
         userRepository.update(user);
     }
@@ -63,12 +63,12 @@ public class UserService {
      */
     public void changePassword(User user, String oldPassword, String newPassword, String confirmPassword) throws Exception {
         if (!PasswordUtils.matches(oldPassword, user.getPassword())) {
-            throw new AuthenticationException("Old password is incorrect.");
+            throw new AuthenticationException("كلمة المرور الحالية غير صحيحة.");
         }
         if (!newPassword.equals(confirmPassword)) {
-            throw new AuthenticationException("New password and confirmation do not match.");
+            throw new AuthenticationException("كلمة المرور الجديدة وتأكيدها غير متطابقين.");
         }
-        ValidationUtils.requireText(newPassword, "New password");
+        ValidationUtils.requireText(newPassword, "كلمة المرور الجديدة");
         user.setPassword(newPassword);
         userRepository.update(user);
     }
@@ -80,10 +80,10 @@ public class UserService {
      */
     public void changeSecurityQuestion(User user, String currentPassword, String question, String answer) throws Exception {
         if (!PasswordUtils.matches(currentPassword, user.getPassword())) {
-            throw new AuthenticationException("Current password is incorrect.");
+            throw new AuthenticationException("كلمة المرور الحالية غير صحيحة.");
         }
-        ValidationUtils.requireText(question, "Security question");
-        ValidationUtils.requireText(answer, "Security answer");
+        ValidationUtils.requireText(question, "سؤال الأمان");
+        ValidationUtils.requireText(answer, "إجابة سؤال الأمان");
         user.setSecurityQuestion(question);
         user.setSecurityAnswer(answer);
         userRepository.update(user);
@@ -92,7 +92,7 @@ public class UserService {
     private void requireManager() throws UnauthorizedActionException {
         User current = SessionManager.getCurrentUser();
         if (current == null || current.getRole() != UserRole.MANAGER) {
-            throw new UnauthorizedActionException("Only managers can access this feature.");
+            throw new UnauthorizedActionException("هذه الشاشة متاحة للمدير فقط.");
         }
     }
 }

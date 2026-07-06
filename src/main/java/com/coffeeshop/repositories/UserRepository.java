@@ -89,7 +89,7 @@ public class UserRepository implements Repository<User> {
      * @throws Exception when user is missing
      */
     public User findUser(int id) throws Exception {
-        return findById(id).orElseThrow(() -> new IllegalArgumentException("User not found."));
+        return findById(id).orElseThrow(() -> new IllegalArgumentException("المستخدم غير موجود."));
     }
 
     /**

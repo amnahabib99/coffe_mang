@@ -7,5 +7,10 @@ public enum CustomerType {
     /** Normal customer. */
     REGULAR,
     /** VIP customer receives a discount. */
-    VIP
+    VIP;
+
+    @Override
+    public String toString() {
+        return this == VIP ? "عميل مميز" : "عميل عادي";
+    }
 }

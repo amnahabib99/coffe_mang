@@ -9,5 +9,14 @@ public enum UserStatus {
     /** User cannot log in. */
     INACTIVE,
     /** User awaits manager verification. */
-    PENDING
+    PENDING;
+
+    @Override
+    public String toString() {
+        return switch (this) {
+            case ACTIVE -> "مفعل";
+            case INACTIVE -> "موقوف";
+            case PENDING -> "بانتظار التحقق";
+        };
+    }
 }

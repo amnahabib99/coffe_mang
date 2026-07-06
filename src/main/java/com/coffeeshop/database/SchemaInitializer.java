@@ -31,7 +31,7 @@ public final class SchemaInitializer {
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + DatabaseConfig.DATABASE);
         } catch (SQLException ex) {
-            throw new DatabaseConnectionException("Could not create database " + DatabaseConfig.DATABASE + ".", ex);
+            throw new DatabaseConnectionException("تعذر إنشاء قاعدة البيانات " + DatabaseConfig.DATABASE + ".", ex);
         }
     }
 
@@ -107,7 +107,7 @@ public final class SchemaInitializer {
                     )
                     """);
         } catch (SQLException ex) {
-            throw new DatabaseConnectionException("Could not create required tables.", ex);
+            throw new DatabaseConnectionException("تعذر إنشاء الجداول المطلوبة.", ex);
         }
     }
 
@@ -116,36 +116,46 @@ public final class SchemaInitializer {
              Statement statement = connection.createStatement()) {
             if (isEmpty(statement, "users")) {
                 statement.executeUpdate("INSERT INTO users(name, username, password, phone, role, security_question, security_answer, status) "
-                        + "VALUES ('Default Manager', '" + AppConstants.DEFAULT_ADMIN_USERNAME + "', '"
-                        + AppConstants.DEFAULT_ADMIN_PASSWORD + "', '000', 'Manager', 'Default question?', 'admin', 'ACTIVE')");
+                        + "VALUES ('المدير الافتراضي', '" + AppConstants.DEFAULT_ADMIN_USERNAME + "', '"
+                        + AppConstants.DEFAULT_ADMIN_PASSWORD + "', '000', 'Manager', 'ما هي كلمة الأمان الافتراضية؟', 'admin', 'ACTIVE')");
             }
             if (isEmpty(statement, "categories")) {
                 statement.executeUpdate("INSERT INTO categories(name, description) VALUES "
-                        + "('Coffee','Hot and cold coffee drinks'),"
-                        + "('Tea','Tea drinks'),"
-                        + "('Dessert','Cakes and sweets'),"
-                        + "('Juice','Fresh juices')");
+                        + "('قهوة','مشروبات القهوة الساخنة والباردة'),"
+                        + "('شاي','مشروبات الشاي'),"
+                        + "('حلويات','كيك وحلويات'),"
+                        + "('عصائر','عصائر طازجة')");
             }
             if (isEmpty(statement, "products")) {
                 statement.executeUpdate("""
                         INSERT INTO products(name, category_id, price, size, status)
-                        SELECT 'Espresso', id, 2.50, 'Small', 'AVAILABLE' FROM categories WHERE name='Coffee'
+                        SELECT 'إسبريسو', id, 2.50, 'صغير', 'AVAILABLE' FROM categories WHERE name='قهوة'
                         """);
                 statement.executeUpdate("""
                         INSERT INTO products(name, category_id, price, size, status)
-                        SELECT 'Latte', id, 4.00, 'Medium', 'AVAILABLE' FROM categories WHERE name='Coffee'
+                        SELECT 'لاتيه', id, 4.00, 'متوسط', 'AVAILABLE' FROM categories WHERE name='قهوة'
                         """);
                 statement.executeUpdate("""
                         INSERT INTO products(name, category_id, price, size, status)
-                        SELECT 'Green Tea', id, 2.00, 'Cup', 'AVAILABLE' FROM categories WHERE name='Tea'
+                        SELECT 'شاي أخضر', id, 2.00, 'كوب', 'AVAILABLE' FROM categories WHERE name='شاي'
                         """);
                 statement.executeUpdate("""
                         INSERT INTO products(name, category_id, price, size, status)
-                        SELECT 'Cheesecake', id, 4.50, 'Slice', 'AVAILABLE' FROM categories WHERE name='Dessert'
+                        SELECT 'تشيز كيك', id, 4.50, 'قطعة', 'AVAILABLE' FROM categories WHERE name='حلويات'
                         """);
             }
+            statement.executeUpdate("UPDATE users SET name='المدير الافتراضي', security_question='ما هي كلمة الأمان الافتراضية؟' "
+                    + "WHERE username='admin' AND name='Default Manager'");
+            statement.executeUpdate("UPDATE categories SET name='قهوة', description='مشروبات القهوة الساخنة والباردة' WHERE name='Coffee'");
+            statement.executeUpdate("UPDATE categories SET name='شاي', description='مشروبات الشاي' WHERE name='Tea'");
+            statement.executeUpdate("UPDATE categories SET name='حلويات', description='كيك وحلويات' WHERE name='Dessert'");
+            statement.executeUpdate("UPDATE categories SET name='عصائر', description='عصائر طازجة' WHERE name='Juice'");
+            statement.executeUpdate("UPDATE products SET name='إسبريسو', size='صغير' WHERE name='Espresso'");
+            statement.executeUpdate("UPDATE products SET name='لاتيه', size='متوسط' WHERE name='Latte'");
+            statement.executeUpdate("UPDATE products SET name='شاي أخضر', size='كوب' WHERE name='Green Tea'");
+            statement.executeUpdate("UPDATE products SET name='تشيز كيك', size='قطعة' WHERE name='Cheesecake'");
         } catch (SQLException ex) {
-            throw new DatabaseConnectionException("Could not insert seed data.", ex);
+            throw new DatabaseConnectionException("تعذر إدخال البيانات الأولية.", ex);
         }
     }
 

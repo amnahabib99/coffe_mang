@@ -32,7 +32,7 @@ public class ProductPanel extends JPanel {
     private final JTextField priceField = new JTextField();
     private final JTextField sizeField = new JTextField();
     private final JComboBox<ProductStatus> statusBox = new JComboBox<>(ProductStatus.values());
-    private final DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Category", "Price", "Size", "Status"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new String[]{"الرقم", "اسم المنتج", "التصنيف", "السعر", "الحجم", "الحالة"}, 0);
     private final JTable table = new JTable(model);
     private final List<Product> products = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class ProductPanel extends JPanel {
     }
 
     private void buildForm() {
-        add(UiTheme.title("Product Management"), BorderLayout.NORTH);
+        add(UiTheme.title("إدارة المنتجات"), BorderLayout.NORTH);
         JPanel form = new JPanel(new GridLayout(2, 8, 6, 6));
         form.setBackground(UiTheme.SURFACE);
         UiTheme.field(idField);
@@ -62,12 +62,12 @@ public class ProductPanel extends JPanel {
         UiTheme.field(sizeField);
         UiTheme.combo(categoryBox);
         UiTheme.combo(statusBox);
-        addHeader(form, "ID");
-        addHeader(form, "Name");
-        addHeader(form, "Category");
-        addHeader(form, "Price");
-        addHeader(form, "Size");
-        addHeader(form, "Status");
+        addHeader(form, "الرقم");
+        addHeader(form, "اسم المنتج");
+        addHeader(form, "التصنيف");
+        addHeader(form, "السعر");
+        addHeader(form, "الحجم");
+        addHeader(form, "الحالة");
         form.add(new JLabel());
         form.add(new JLabel());
         form.add(idField);
@@ -76,9 +76,9 @@ public class ProductPanel extends JPanel {
         form.add(priceField);
         form.add(sizeField);
         form.add(statusBox);
-        JButton addButton = new JButton("Add");
-        JButton updateButton = new JButton("Update");
-        JButton deleteButton = new JButton("Delete");
+        JButton addButton = new JButton("إضافة");
+        JButton updateButton = new JButton("تحديث");
+        JButton deleteButton = new JButton("حذف");
         UiTheme.button(addButton, true);
         UiTheme.button(updateButton, false);
         UiTheme.dangerButton(deleteButton);
@@ -103,7 +103,7 @@ public class ProductPanel extends JPanel {
             productService.addProduct(product);
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Product added.");
+            JOptionPane.showMessageDialog(this, "تمت إضافة المنتج بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -114,7 +114,7 @@ public class ProductPanel extends JPanel {
             productService.update(readProduct(Integer.parseInt(idField.getText())));
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Product updated.");
+            JOptionPane.showMessageDialog(this, "تم تحديث المنتج بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -125,7 +125,7 @@ public class ProductPanel extends JPanel {
             productService.delete(Integer.parseInt(idField.getText()));
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Product deleted.");
+            JOptionPane.showMessageDialog(this, "تم حذف المنتج بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -180,6 +180,6 @@ public class ProductPanel extends JPanel {
     }
 
     private void showError(Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Product Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في المنتجات", JOptionPane.ERROR_MESSAGE);
     }
 }

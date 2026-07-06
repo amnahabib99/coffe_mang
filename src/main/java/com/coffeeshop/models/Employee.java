@@ -20,6 +20,6 @@ public class Employee extends User {
 
     @Override
     public String getRoleDescription() {
-        return "Employee: creates orders and views invoices.";
+        return "موظف: ينشئ الطلبات ويعرض الفواتير.";
     }
 }

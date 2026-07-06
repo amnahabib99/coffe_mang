@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UserManagementPanel extends JPanel {
     private final UserService service = new UserService();
-    private final DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Username", "Role", "Status"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new String[]{"الرقم", "الاسم", "اسم المستخدم", "الدور", "الحالة"}, 0);
     private final JTable table = new JTable(model);
     private final JComboBox<UserRole> roleBox = new JComboBox<>(UserRole.values());
     private final List<User> users = new ArrayList<>();
@@ -32,16 +32,16 @@ public class UserManagementPanel extends JPanel {
     public UserManagementPanel() {
         setLayout(new BorderLayout(8, 8));
         UiTheme.page(this);
-        add(UiTheme.title("User Verification"), BorderLayout.NORTH);
+        add(UiTheme.title("إدارة المستخدمين والتحقق"), BorderLayout.NORTH);
         UiTheme.table(table);
         JScrollPane scrollPane = new JScrollPane(table);
         UiTheme.scroll(scrollPane);
         add(scrollPane, BorderLayout.CENTER);
         JPanel buttons = new JPanel();
         buttons.setBackground(UiTheme.BACKGROUND);
-        JButton activate = new JButton("Activate");
-        JButton deactivate = new JButton("Deactivate");
-        JButton changeRole = new JButton("Change Role");
+        JButton activate = new JButton("تفعيل");
+        JButton deactivate = new JButton("إيقاف");
+        JButton changeRole = new JButton("تغيير الدور");
         UiTheme.button(activate, true);
         UiTheme.dangerButton(deactivate);
         UiTheme.button(changeRole, false);
@@ -63,7 +63,7 @@ public class UserManagementPanel extends JPanel {
             users.addAll(service.getAllUsers());
             model.setRowCount(0);
             for (User user : users) {
-                model.addRow(new Object[]{user.getId(), user.getName(), user.getUsername(), user.getRole().getLabel(), user.getStatus()});
+                model.addRow(new Object[]{user.getId(), user.getName(), user.getUsername(), user.getRole(), user.getStatus()});
             }
         } catch (Exception ex) {
             showError(ex);
@@ -74,7 +74,7 @@ public class UserManagementPanel extends JPanel {
         try {
             service.updateStatus(selectedUserId(), status);
             refresh();
-            JOptionPane.showMessageDialog(this, "User status updated.");
+            JOptionPane.showMessageDialog(this, "تم تحديث حالة المستخدم.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -84,7 +84,7 @@ public class UserManagementPanel extends JPanel {
         try {
             service.updateRole(selectedUserId(), (UserRole) roleBox.getSelectedItem());
             refresh();
-            JOptionPane.showMessageDialog(this, "User role updated.");
+            JOptionPane.showMessageDialog(this, "تم تحديث دور المستخدم.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -93,12 +93,12 @@ public class UserManagementPanel extends JPanel {
     private int selectedUserId() {
         int row = table.getSelectedRow();
         if (row < 0) {
-            throw new IllegalArgumentException("Select a user first.");
+            throw new IllegalArgumentException("الرجاء اختيار مستخدم أولًا.");
         }
         return (int) model.getValueAt(row, 0);
     }
 
     private void showError(Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "User Management Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في إدارة المستخدمين", JOptionPane.ERROR_MESSAGE);
     }
 }

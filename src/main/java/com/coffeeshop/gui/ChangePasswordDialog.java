@@ -27,22 +27,22 @@ public class ChangePasswordDialog extends JDialog {
      * @param owner parent frame
      */
     public ChangePasswordDialog(JFrame owner) {
-        super(owner, "Change Password", true);
+        super(owner, "تغيير كلمة المرور", true);
         setSize(420, 220);
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         JPanel content = new JPanel(new BorderLayout(10, 10));
         UiTheme.page(content);
-        content.add(UiTheme.title("Change Password"), BorderLayout.NORTH);
+        content.add(UiTheme.title("تغيير كلمة المرور"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(4, 2, 8, 8));
         panel.setBackground(UiTheme.SURFACE);
         UiTheme.field(oldField);
         UiTheme.field(newField);
         UiTheme.field(confirmField);
-        addRow(panel, "Old Password", oldField);
-        addRow(panel, "New Password", newField);
-        addRow(panel, "Confirm New Password", confirmField);
-        javax.swing.JButton saveButton = new javax.swing.JButton("Save Password");
+        addRow(panel, "كلمة المرور الحالية", oldField);
+        addRow(panel, "كلمة المرور الجديدة", newField);
+        addRow(panel, "تأكيد كلمة المرور", confirmField);
+        javax.swing.JButton saveButton = new javax.swing.JButton("حفظ كلمة المرور");
         UiTheme.button(saveButton, true);
         panel.add(new JLabel());
         panel.add(saveButton);
@@ -62,10 +62,10 @@ public class ChangePasswordDialog extends JDialog {
         try {
             service.changePassword(SessionManager.getCurrentUser(), new String(oldField.getPassword()),
                     new String(newField.getPassword()), new String(confirmField.getPassword()));
-            JOptionPane.showMessageDialog(this, "Password changed successfully.");
+            JOptionPane.showMessageDialog(this, "تم تغيير كلمة المرور بنجاح.");
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Password Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في كلمة المرور", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

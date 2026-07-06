@@ -28,22 +28,22 @@ public class ChangeSecurityQuestionDialog extends JDialog {
      * @param owner parent frame
      */
     public ChangeSecurityQuestionDialog(JFrame owner) {
-        super(owner, "Change Security Question", true);
+        super(owner, "تغيير سؤال الأمان", true);
         setSize(500, 230);
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         JPanel content = new JPanel(new BorderLayout(10, 10));
         UiTheme.page(content);
-        content.add(UiTheme.title("Security Question"), BorderLayout.NORTH);
+        content.add(UiTheme.title("تغيير سؤال الأمان"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(4, 2, 8, 8));
         panel.setBackground(UiTheme.SURFACE);
         UiTheme.field(passwordField);
         UiTheme.field(questionField);
         UiTheme.field(answerField);
-        addRow(panel, "Current Password", passwordField);
-        addRow(panel, "New Security Question", questionField);
-        addRow(panel, "New Security Answer", answerField);
-        javax.swing.JButton saveButton = new javax.swing.JButton("Save Security");
+        addRow(panel, "كلمة المرور الحالية", passwordField);
+        addRow(panel, "سؤال الأمان الجديد", questionField);
+        addRow(panel, "إجابة سؤال الأمان الجديدة", answerField);
+        javax.swing.JButton saveButton = new javax.swing.JButton("حفظ سؤال الأمان");
         UiTheme.button(saveButton, true);
         panel.add(new JLabel());
         panel.add(saveButton);
@@ -63,10 +63,10 @@ public class ChangeSecurityQuestionDialog extends JDialog {
         try {
             service.changeSecurityQuestion(SessionManager.getCurrentUser(), new String(passwordField.getPassword()),
                     questionField.getText(), answerField.getText());
-            JOptionPane.showMessageDialog(this, "Security question changed successfully.");
+            JOptionPane.showMessageDialog(this, "تم تغيير سؤال الأمان بنجاح.");
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Security Question Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في سؤال الأمان", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

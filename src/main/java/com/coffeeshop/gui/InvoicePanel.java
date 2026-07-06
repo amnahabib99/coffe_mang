@@ -21,7 +21,7 @@ import java.util.List;
 public class InvoicePanel extends JPanel {
     private final OrderService orderService = new OrderService();
     private final InvoiceService invoiceService = new InvoiceService();
-    private final DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Cashier", "Date", "Subtotal", "Tax", "Discount", "Total"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new String[]{"رقم الفاتورة", "الموظف", "التاريخ", "المجموع الفرعي", "الضريبة", "الخصم", "الإجمالي"}, 0);
     private final JTable table = new JTable(model);
     private final JTextArea detailsArea = new JTextArea();
     private final List<Order> orders = new ArrayList<>();
@@ -32,11 +32,11 @@ public class InvoicePanel extends JPanel {
     public InvoicePanel() {
         setLayout(new BorderLayout(8, 8));
         UiTheme.page(this);
-        JButton refreshButton = new JButton("Refresh");
+        JButton refreshButton = new JButton("تحديث");
         UiTheme.button(refreshButton, true);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
-        top.add(UiTheme.title("Invoices and Sales"), BorderLayout.WEST);
+        top.add(UiTheme.title("الفواتير والمبيعات"), BorderLayout.WEST);
         top.add(refreshButton, BorderLayout.EAST);
         add(top, BorderLayout.NORTH);
         UiTheme.table(table);
@@ -65,7 +65,7 @@ public class InvoicePanel extends JPanel {
                 model.addRow(new Object[]{order.getId(), order.getCashier().getName(), order.getCreatedAt(),
                         order.getSubtotal(), order.getTax(), order.getDiscount(), order.getTotal()});
             }
-            detailsArea.setText("Total sales: " + String.format("%.2f", sales));
+            detailsArea.setText("إجمالي المبيعات: " + String.format("%.2f", sales));
         } catch (Exception ex) {
             showError(ex);
         }
@@ -79,6 +79,6 @@ public class InvoicePanel extends JPanel {
     }
 
     private void showError(Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Invoice Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في الفواتير", JOptionPane.ERROR_MESSAGE);
     }
 }

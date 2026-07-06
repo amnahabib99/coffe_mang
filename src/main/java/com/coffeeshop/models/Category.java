@@ -49,7 +49,7 @@ public class Category {
     }
 
     public final void setName(String name) throws InvalidInputException {
-        ValidationUtils.requireText(name, "Category name");
+        ValidationUtils.requireText(name, "اسم التصنيف");
         this.name = name.trim();
     }
 

@@ -26,7 +26,7 @@ public class LoginFrame extends JFrame {
      * Creates the login window.
      */
     public LoginFrame() {
-        setTitle("Coffee Shop Login");
+        setTitle("تسجيل الدخول - نظام إدارة المقهى");
         setSize(420, 230);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,18 +40,18 @@ public class LoginFrame extends JFrame {
      * @param message error message
      */
     public static void showStartupError(String message) {
-        JOptionPane.showMessageDialog(null, message, "Database Startup Warning", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "تنبيه قاعدة البيانات", JOptionPane.WARNING_MESSAGE);
     }
 
     private void buildUi() {
         JPanel content = new JPanel(new BorderLayout(10, 10));
         UiTheme.page(content);
-        content.add(UiTheme.title("Coffee Shop Login"), BorderLayout.NORTH);
+        content.add(UiTheme.title("تسجيل الدخول إلى نظام إدارة المقهى"), BorderLayout.NORTH);
 
         JPanel form = new JPanel(new GridLayout(2, 2, 10, 10));
         form.setBackground(UiTheme.SURFACE);
-        JLabel usernameLabel = new JLabel("Username");
-        JLabel passwordLabel = new JLabel("Password");
+        JLabel usernameLabel = new JLabel("اسم المستخدم");
+        JLabel passwordLabel = new JLabel("كلمة المرور");
         UiTheme.label(usernameLabel);
         UiTheme.label(passwordLabel);
         UiTheme.field(usernameField);
@@ -61,9 +61,9 @@ public class LoginFrame extends JFrame {
         form.add(passwordLabel);
         form.add(passwordField);
 
-        JButton loginButton = new JButton("Login");
-        JButton registerButton = new JButton("Register");
-        JButton forgotButton = new JButton("Forgot Password");
+        JButton loginButton = new JButton("دخول");
+        JButton registerButton = new JButton("إنشاء حساب");
+        JButton forgotButton = new JButton("نسيت كلمة المرور");
         UiTheme.button(loginButton, true);
         UiTheme.button(registerButton, false);
         UiTheme.button(forgotButton, false);
@@ -86,11 +86,11 @@ public class LoginFrame extends JFrame {
     private void login() {
         try {
             User user = authService.login(usernameField.getText(), new String(passwordField.getPassword()));
-            JOptionPane.showMessageDialog(this, "Welcome " + user.getName());
+            JOptionPane.showMessageDialog(this, "مرحبًا " + user.getName());
             new MainFrame().setVisible(true);
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Login Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في تسجيل الدخول", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

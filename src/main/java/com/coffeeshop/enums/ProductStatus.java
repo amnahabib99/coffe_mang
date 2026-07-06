@@ -7,5 +7,10 @@ public enum ProductStatus {
     /** Product can be sold. */
     AVAILABLE,
     /** Product is hidden from ordering. */
-    UNAVAILABLE
+    UNAVAILABLE;
+
+    @Override
+    public String toString() {
+        return this == AVAILABLE ? "متوفر" : "غير متوفر";
+    }
 }

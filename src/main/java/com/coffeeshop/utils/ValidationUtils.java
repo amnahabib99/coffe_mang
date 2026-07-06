@@ -18,7 +18,7 @@ public final class ValidationUtils {
      */
     public static void requireText(String value, String fieldName) throws InvalidInputException {
         if (value == null || value.trim().isEmpty()) {
-            throw new InvalidInputException(fieldName + " cannot be empty.");
+            throw new InvalidInputException("حقل " + fieldName + " لا يمكن أن يكون فارغًا.");
         }
     }
 
@@ -31,7 +31,7 @@ public final class ValidationUtils {
      */
     public static void requirePositive(double value, String fieldName) throws InvalidInputException {
         if (value <= 0) {
-            throw new InvalidInputException(fieldName + " must be greater than zero.");
+            throw new InvalidInputException("حقل " + fieldName + " يجب أن يكون أكبر من صفر.");
         }
     }
 }

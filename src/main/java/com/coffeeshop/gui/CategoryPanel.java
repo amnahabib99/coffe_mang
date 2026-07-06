@@ -23,7 +23,7 @@ public class CategoryPanel extends JPanel {
     private final JTextField idField = new JTextField();
     private final JTextField nameField = new JTextField();
     private final JTextField descriptionField = new JTextField();
-    private final DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Description"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new String[]{"الرقم", "اسم التصنيف", "الوصف"}, 0);
     private final JTable table = new JTable(model);
 
     /**
@@ -43,23 +43,23 @@ public class CategoryPanel extends JPanel {
     }
 
     private void buildForm() {
-        add(UiTheme.title("Category Management"), BorderLayout.NORTH);
+        add(UiTheme.title("إدارة التصنيفات"), BorderLayout.NORTH);
         JPanel form = new JPanel(new GridLayout(2, 5, 6, 6));
         form.setBackground(UiTheme.SURFACE);
         UiTheme.field(idField);
         UiTheme.field(nameField);
         UiTheme.field(descriptionField);
-        addHeader(form, "ID");
-        addHeader(form, "Name");
-        addHeader(form, "Description");
+        addHeader(form, "الرقم");
+        addHeader(form, "اسم التصنيف");
+        addHeader(form, "الوصف");
         form.add(new JLabel());
         form.add(new JLabel());
         form.add(idField);
         form.add(nameField);
         form.add(descriptionField);
-        JButton addButton = new JButton("Add");
-        JButton updateButton = new JButton("Update");
-        JButton deleteButton = new JButton("Delete");
+        JButton addButton = new JButton("إضافة");
+        JButton updateButton = new JButton("تحديث");
+        JButton deleteButton = new JButton("حذف");
         UiTheme.button(addButton, true);
         UiTheme.button(updateButton, false);
         UiTheme.dangerButton(deleteButton);
@@ -83,7 +83,7 @@ public class CategoryPanel extends JPanel {
             service.add(new Category(nameField.getText(), descriptionField.getText()));
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Category added.");
+            JOptionPane.showMessageDialog(this, "تمت إضافة التصنيف بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -94,7 +94,7 @@ public class CategoryPanel extends JPanel {
             service.update(new Category(Integer.parseInt(idField.getText()), nameField.getText(), descriptionField.getText()));
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Category updated.");
+            JOptionPane.showMessageDialog(this, "تم تحديث التصنيف بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -105,7 +105,7 @@ public class CategoryPanel extends JPanel {
             service.delete(Integer.parseInt(idField.getText()));
             clear();
             refresh();
-            JOptionPane.showMessageDialog(this, "Category deleted.");
+            JOptionPane.showMessageDialog(this, "تم حذف التصنيف بنجاح.");
         } catch (Exception ex) {
             showError(ex);
         }
@@ -139,6 +139,6 @@ public class CategoryPanel extends JPanel {
     }
 
     private void showError(Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Category Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في التصنيفات", JOptionPane.ERROR_MESSAGE);
     }
 }

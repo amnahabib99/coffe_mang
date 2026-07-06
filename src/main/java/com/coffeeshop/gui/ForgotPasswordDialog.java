@@ -28,7 +28,7 @@ public class ForgotPasswordDialog extends JDialog {
      * @param owner parent frame
      */
     public ForgotPasswordDialog(JFrame owner) {
-        super(owner, "Forgot Password", true);
+        super(owner, "استعادة كلمة المرور", true);
         setSize(500, 260);
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
@@ -39,20 +39,20 @@ public class ForgotPasswordDialog extends JDialog {
     private void buildUi() {
         JPanel content = new JPanel(new BorderLayout(10, 10));
         UiTheme.page(content);
-        content.add(UiTheme.title("Password Recovery"), BorderLayout.NORTH);
+        content.add(UiTheme.title("استعادة كلمة المرور"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(5, 2, 8, 8));
         panel.setBackground(UiTheme.SURFACE);
         UiTheme.field(usernameField);
         UiTheme.field(questionField);
         UiTheme.field(answerField);
         UiTheme.field(newPasswordField);
-        addRow(panel, "Username", usernameField);
-        addRow(panel, "Security Question", questionField);
-        addRow(panel, "Security Answer", answerField);
-        addRow(panel, "New Password", newPasswordField);
+        addRow(panel, "اسم المستخدم", usernameField);
+        addRow(panel, "سؤال الأمان", questionField);
+        addRow(panel, "إجابة سؤال الأمان", answerField);
+        addRow(panel, "كلمة المرور الجديدة", newPasswordField);
 
-        javax.swing.JButton loadButton = new javax.swing.JButton("Load Question");
-        javax.swing.JButton resetButton = new javax.swing.JButton("Reset Password");
+        javax.swing.JButton loadButton = new javax.swing.JButton("عرض السؤال");
+        javax.swing.JButton resetButton = new javax.swing.JButton("تحديث كلمة المرور");
         UiTheme.button(loadButton, false);
         UiTheme.button(resetButton, true);
         panel.add(loadButton);
@@ -75,17 +75,17 @@ public class ForgotPasswordDialog extends JDialog {
         try {
             questionField.setText(authService.getSecurityQuestion(usernameField.getText()));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Recovery Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في الاستعادة", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void reset() {
         try {
             authService.resetPassword(usernameField.getText(), answerField.getText(), new String(newPasswordField.getPassword()));
-            JOptionPane.showMessageDialog(this, "Password updated successfully.");
+            JOptionPane.showMessageDialog(this, "تم تحديث كلمة المرور بنجاح.");
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Recovery Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في الاستعادة", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -102,16 +102,16 @@ public class Order implements Payable, Printable {
     @Override
     public String print() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Invoice #").append(id == 0 ? "New" : id).append(System.lineSeparator());
-        builder.append("Cashier: ").append(cashier == null ? "N/A" : cashier.getName()).append(System.lineSeparator());
+        builder.append("فاتورة رقم ").append(id == 0 ? "جديدة" : id).append(System.lineSeparator());
+        builder.append("الموظف: ").append(cashier == null ? "غير محدد" : cashier.getName()).append(System.lineSeparator());
         for (OrderItem item : items) {
-            builder.append(item.getProductName()).append(" x").append(item.getQuantity())
+            builder.append(item.getProductName()).append(" × ").append(item.getQuantity())
                     .append(" = ").append(String.format("%.2f", item.getLineTotal())).append(System.lineSeparator());
         }
-        builder.append("Subtotal: ").append(String.format("%.2f", subtotal)).append(System.lineSeparator());
-        builder.append("Tax: ").append(String.format("%.2f", tax)).append(System.lineSeparator());
-        builder.append("Discount: ").append(String.format("%.2f", discount)).append(System.lineSeparator());
-        builder.append("Total: ").append(String.format("%.2f", total));
+        builder.append("المجموع الفرعي: ").append(String.format("%.2f", subtotal)).append(System.lineSeparator());
+        builder.append("الضريبة: ").append(String.format("%.2f", tax)).append(System.lineSeparator());
+        builder.append("الخصم: ").append(String.format("%.2f", discount)).append(System.lineSeparator());
+        builder.append("الإجمالي النهائي: ").append(String.format("%.2f", total));
         return builder.toString();
     }
 

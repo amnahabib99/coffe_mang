@@ -31,7 +31,7 @@ public class Customer extends Person {
 
     @Override
     public String getRoleDescription() {
-        return type == CustomerType.VIP ? "VIP customer: receives discounts" : "Regular customer";
+        return type == CustomerType.VIP ? "عميل مميز: يحصل على خصم" : "عميل عادي";
     }
 
     public CustomerType getType() {

@@ -25,7 +25,7 @@ public class RegisterDialog extends JDialog {
     private final JPasswordField passwordField = new JPasswordField();
     private final JTextField phoneField = new JTextField();
     private final JComboBox<UserRole> roleBox = new JComboBox<>(UserRole.values());
-    private final JTextField questionField = new JTextField("Default question?");
+    private final JTextField questionField = new JTextField("ما هو سؤال الأمان؟");
     private final JTextField answerField = new JTextField();
     private final AuthService authService = new AuthService();
 
@@ -35,7 +35,7 @@ public class RegisterDialog extends JDialog {
      * @param owner parent frame
      */
     public RegisterDialog(JFrame owner) {
-        super(owner, "Register User", true);
+        super(owner, "إنشاء حساب مستخدم", true);
         setSize(460, 360);
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
@@ -45,22 +45,22 @@ public class RegisterDialog extends JDialog {
     private void buildUi() {
         JPanel content = new JPanel(new BorderLayout(10, 10));
         UiTheme.page(content);
-        content.add(UiTheme.title("Register User"), BorderLayout.NORTH);
+        content.add(UiTheme.title("إنشاء حساب مستخدم"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(8, 2, 8, 8));
         panel.setBackground(UiTheme.SURFACE);
         styleFields();
-        addRow(panel, "Name", nameField);
-        addRow(panel, "Username", usernameField);
-        addRow(panel, "Password", passwordField);
-        addRow(panel, "Phone", phoneField);
-        JLabel roleLabel = new JLabel("Role");
+        addRow(panel, "الاسم", nameField);
+        addRow(panel, "اسم المستخدم", usernameField);
+        addRow(panel, "كلمة المرور", passwordField);
+        addRow(panel, "رقم الهاتف", phoneField);
+        JLabel roleLabel = new JLabel("الدور");
         UiTheme.label(roleLabel);
         UiTheme.combo(roleBox);
         panel.add(roleLabel);
         panel.add(roleBox);
-        addRow(panel, "Security Question", questionField);
-        addRow(panel, "Security Answer", answerField);
-        javax.swing.JButton saveButton = new javax.swing.JButton("Save User");
+        addRow(panel, "سؤال الأمان", questionField);
+        addRow(panel, "إجابة سؤال الأمان", answerField);
+        javax.swing.JButton saveButton = new javax.swing.JButton("حفظ المستخدم");
         UiTheme.button(saveButton, true);
         panel.add(new JLabel());
         panel.add(saveButton);
@@ -90,10 +90,10 @@ public class RegisterDialog extends JDialog {
             UserStatus status = SessionManager.getCurrentUser() == null ? UserStatus.PENDING : UserStatus.ACTIVE;
             authService.register(nameField.getText(), usernameField.getText(), new String(passwordField.getPassword()),
                     phoneField.getText(), (UserRole) roleBox.getSelectedItem(), questionField.getText(), answerField.getText(), status);
-            JOptionPane.showMessageDialog(this, "User registered successfully.");
+            JOptionPane.showMessageDialog(this, "تم إنشاء الحساب بنجاح.");
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Registration Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في إنشاء الحساب", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

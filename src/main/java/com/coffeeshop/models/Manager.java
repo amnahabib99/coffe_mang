@@ -20,6 +20,6 @@ public class Manager extends User {
 
     @Override
     public String getRoleDescription() {
-        return "Manager: manages users, categories, products, reports, and sales.";
+        return "مدير: يدير المستخدمين والتصنيفات والمنتجات والتقارير والمبيعات.";
     }
 }

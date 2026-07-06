@@ -36,12 +36,12 @@ public class OrderPanel extends JPanel {
     private final JTextField customerNameField = new JTextField();
     private final JTextField customerPhoneField = new JTextField();
     private final JComboBox<CustomerType> customerTypeBox = new JComboBox<>(CustomerType.values());
-    private final DefaultTableModel model = new DefaultTableModel(new String[]{"Product", "Quantity", "Unit Price", "Line Total"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new String[]{"المنتج", "الكمية", "سعر الوحدة", "الإجمالي"}, 0);
     private final JTable table = new JTable(model);
-    private final JLabel subtotalLabel = new JLabel("Subtotal: 0.00");
-    private final JLabel taxLabel = new JLabel("Tax: 0.00");
-    private final JLabel discountLabel = new JLabel("Discount: 0.00");
-    private final JLabel totalLabel = new JLabel("Total: 0.00");
+    private final JLabel subtotalLabel = new JLabel("المجموع الفرعي: 0.00");
+    private final JLabel taxLabel = new JLabel("الضريبة: 0.00");
+    private final JLabel discountLabel = new JLabel("الخصم: 0.00");
+    private final JLabel totalLabel = new JLabel("الإجمالي النهائي: 0.00");
     private final JTextArea invoiceArea = new JTextArea();
     private Order currentOrder;
 
@@ -64,7 +64,7 @@ public class OrderPanel extends JPanel {
     private void buildTop() {
         JPanel wrapper = new JPanel(new BorderLayout(8, 8));
         wrapper.setBackground(UiTheme.BACKGROUND);
-        wrapper.add(UiTheme.title("Create Order"), BorderLayout.NORTH);
+        wrapper.add(UiTheme.title("إنشاء طلب جديد"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(2, 6, 6, 6));
         panel.setBackground(UiTheme.SURFACE);
         UiTheme.combo(productBox);
@@ -72,18 +72,18 @@ public class OrderPanel extends JPanel {
         UiTheme.field(quantityField);
         UiTheme.field(customerNameField);
         UiTheme.field(customerPhoneField);
-        addHeader(panel, "Product");
-        addHeader(panel, "Quantity");
-        addHeader(panel, "Customer Name");
-        addHeader(panel, "Phone");
-        addHeader(panel, "Type");
+        addHeader(panel, "المنتج");
+        addHeader(panel, "الكمية");
+        addHeader(panel, "اسم العميل");
+        addHeader(panel, "رقم الهاتف");
+        addHeader(panel, "نوع العميل");
         panel.add(new JLabel());
         panel.add(productBox);
         panel.add(quantityField);
         panel.add(customerNameField);
         panel.add(customerPhoneField);
         panel.add(customerTypeBox);
-        JButton addButton = new JButton("Add Item");
+        JButton addButton = new JButton("إضافة للطلب");
         UiTheme.button(addButton, true);
         panel.add(addButton);
         wrapper.add(UiTheme.card(panel), BorderLayout.CENTER);
@@ -96,9 +96,9 @@ public class OrderPanel extends JPanel {
         bottom.setBackground(UiTheme.BACKGROUND);
         JPanel totals = new JPanel();
         totals.setBackground(UiTheme.BACKGROUND);
-        JButton removeButton = new JButton("Remove Item");
-        JButton completeButton = new JButton("Complete Order");
-        JButton newButton = new JButton("New Order");
+        JButton removeButton = new JButton("حذف من الطلب");
+        JButton completeButton = new JButton("إتمام الطلب");
+        JButton newButton = new JButton("طلب جديد");
         UiTheme.dangerButton(removeButton);
         UiTheme.button(completeButton, true);
         UiTheme.button(newButton, false);
@@ -175,7 +175,7 @@ public class OrderPanel extends JPanel {
             }
             Order saved = orderService.completeOrder(currentOrder, customer);
             String invoiceText = invoiceService.createInvoiceText(saved);
-            JOptionPane.showMessageDialog(this, "Order completed and invoice generated.");
+            JOptionPane.showMessageDialog(this, "تم إتمام الطلب وإنشاء الفاتورة.");
             startOrder();
             invoiceArea.setText(invoiceText);
         } catch (Exception ex) {
@@ -203,13 +203,13 @@ public class OrderPanel extends JPanel {
     }
 
     private void updateTotals() {
-        subtotalLabel.setText(String.format("Subtotal: %.2f", currentOrder.getSubtotal()));
-        taxLabel.setText(String.format("Tax: %.2f", currentOrder.getTax()));
-        discountLabel.setText(String.format("Discount: %.2f", currentOrder.getDiscount()));
-        totalLabel.setText(String.format("Total: %.2f", currentOrder.getTotal()));
+        subtotalLabel.setText(String.format("المجموع الفرعي: %.2f", currentOrder.getSubtotal()));
+        taxLabel.setText(String.format("الضريبة: %.2f", currentOrder.getTax()));
+        discountLabel.setText(String.format("الخصم: %.2f", currentOrder.getDiscount()));
+        totalLabel.setText(String.format("الإجمالي النهائي: %.2f", currentOrder.getTotal()));
     }
 
     private void showError(Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Order Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في الطلب", JOptionPane.ERROR_MESSAGE);
     }
 }

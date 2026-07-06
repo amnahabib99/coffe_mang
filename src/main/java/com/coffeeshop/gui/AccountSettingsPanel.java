@@ -15,11 +15,11 @@ public class AccountSettingsPanel extends JPanel {
      */
     public AccountSettingsPanel(JFrame owner) {
         UiTheme.page(this);
-        JButton passwordButton = new JButton("Change Password");
-        JButton securityButton = new JButton("Change Security Question");
+        JButton passwordButton = new JButton("تغيير كلمة المرور");
+        JButton securityButton = new JButton("تغيير سؤال الأمان");
         UiTheme.button(passwordButton, true);
         UiTheme.button(securityButton, false);
-        add(UiTheme.title("Account Settings"));
+        add(UiTheme.title("إعدادات الحساب"));
         add(passwordButton);
         add(securityButton);
         passwordButton.addActionListener(event -> new ChangePasswordDialog(owner).setVisible(true));

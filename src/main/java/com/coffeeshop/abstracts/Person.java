@@ -54,7 +54,7 @@ public abstract class Person {
     }
 
     public final void setName(String name) throws InvalidInputException {
-        ValidationUtils.requireText(name, "Name");
+        ValidationUtils.requireText(name, "الاسم");
         this.name = name.trim();
     }
 

@@ -21,10 +21,10 @@ public class ReportService {
      */
     public String buildOopDemoReport() throws Exception {
         List<Person> people = new ArrayList<>();
-        people.add(new Manager(1, "Sara Manager", "sara", "x", "111", "Q", "A", UserStatus.ACTIVE));
-        people.add(new Employee(2, "Omar Employee", "omar", "x", "222", "Q", "A", UserStatus.ACTIVE));
-        people.add(new VIPCustomer(3, "Lina VIP", "333"));
-        StringBuilder builder = new StringBuilder("OOP Polymorphism Demo\n");
+        people.add(new Manager(1, "سارة", "sara", "x", "111", "س", "ج", UserStatus.ACTIVE));
+        people.add(new Employee(2, "عمر", "omar", "x", "222", "س", "ج", UserStatus.ACTIVE));
+        people.add(new VIPCustomer(3, "لينا", "333"));
+        StringBuilder builder = new StringBuilder("تقرير توضيحي لتعدد الأشكال في البرمجة الكائنية\n");
         for (Person person : people) {
             builder.append(person.getName()).append(" -> ").append(person.getRoleDescription()).append('\n');
         }

@@ -20,15 +20,15 @@ public class AuthService implements Authenticatable {
     @Override
     public User login(String username, String password) throws AuthenticationException {
         try {
-            ValidationUtils.requireText(username, "Username");
-            ValidationUtils.requireText(password, "Password");
+            ValidationUtils.requireText(username, "اسم المستخدم");
+            ValidationUtils.requireText(password, "كلمة المرور");
             User user = userRepository.findByUsername(username)
-                    .orElseThrow(() -> new AuthenticationException("Invalid username or password."));
+                    .orElseThrow(() -> new AuthenticationException("اسم المستخدم أو كلمة المرور غير صحيحة."));
             if (!PasswordUtils.matches(password, user.getPassword())) {
-                throw new AuthenticationException("Invalid username or password.");
+                throw new AuthenticationException("اسم المستخدم أو كلمة المرور غير صحيحة.");
             }
             if (user.getStatus() != UserStatus.ACTIVE) {
-                throw new AuthenticationException("Your account is not active. Ask a manager to verify it.");
+                throw new AuthenticationException("حسابك غير مفعل. الرجاء طلب التفعيل من المدير.");
             }
             SessionManager.setCurrentUser(user);
             return user;
@@ -47,10 +47,10 @@ public class AuthService implements Authenticatable {
      */
     public User register(String name, String username, String password, String phone, UserRole role,
                          String question, String answer, UserStatus status) throws Exception {
-        ValidationUtils.requireText(username, "Username");
-        ValidationUtils.requireText(password, "Password");
+        ValidationUtils.requireText(username, "اسم المستخدم");
+        ValidationUtils.requireText(password, "كلمة المرور");
         if (userRepository.findByUsername(username).isPresent()) {
-            throw new InvalidInputException("Username already exists.");
+            throw new InvalidInputException("اسم المستخدم موجود مسبقًا.");
         }
         User user = new User(name, username, password, phone, role, question, answer);
         user.setStatus(status == null ? UserStatus.PENDING : status);
@@ -66,7 +66,7 @@ public class AuthService implements Authenticatable {
      */
     public String getSecurityQuestion(String username) throws Exception {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new AuthenticationException("Username was not found."))
+                .orElseThrow(() -> new AuthenticationException("اسم المستخدم غير موجود."))
                 .getSecurityQuestion();
     }
 
@@ -77,10 +77,10 @@ public class AuthService implements Authenticatable {
      */
     public void resetPassword(String username, String answer, String newPassword) throws Exception {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new AuthenticationException("Username was not found."));
-        ValidationUtils.requireText(newPassword, "New password");
+                .orElseThrow(() -> new AuthenticationException("اسم المستخدم غير موجود."));
+        ValidationUtils.requireText(newPassword, "كلمة المرور الجديدة");
         if (!user.getSecurityAnswer().equalsIgnoreCase(answer == null ? "" : answer.trim())) {
-            throw new AuthenticationException("Security answer is incorrect.");
+            throw new AuthenticationException("إجابة سؤال الأمان غير صحيحة.");
         }
         user.setPassword(newPassword);
         userRepository.update(user);

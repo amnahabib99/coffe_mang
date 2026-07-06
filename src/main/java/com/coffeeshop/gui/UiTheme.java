@@ -10,10 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
@@ -36,6 +39,8 @@ public final class UiTheme {
     public static final Color BORDER = new Color(222, 216, 207);
     /** Soft danger color. */
     public static final Color DANGER = new Color(174, 53, 53);
+    /** Arabic-friendly application font family. */
+    public static final String FONT_NAME = "Tahoma";
 
     private UiTheme() {
     }
@@ -48,6 +53,7 @@ public final class UiTheme {
     public static void page(JPanel panel) {
         panel.setBackground(BACKGROUND);
         panel.setBorder(BorderFactory.createEmptyBorder(18, 18, 18, 18));
+        panel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -58,9 +64,11 @@ public final class UiTheme {
      */
     public static JLabel title(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        label.setFont(new Font(FONT_NAME, Font.BOLD, 23));
         label.setForeground(PRIMARY);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 0));
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
+        label.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         return label;
     }
 
@@ -72,8 +80,10 @@ public final class UiTheme {
      */
     public static JLabel subtitle(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        label.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
         label.setForeground(new Color(96, 86, 78));
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
+        label.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         return label;
     }
 
@@ -86,6 +96,7 @@ public final class UiTheme {
     public static JPanel card(Component content) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(SURFACE);
+        panel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER),
                 BorderFactory.createEmptyBorder(14, 14, 14, 14)));
@@ -99,7 +110,9 @@ public final class UiTheme {
      * @param field text field
      */
     public static void field(JTextField field) {
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        field.setFont(new Font(FONT_NAME, Font.PLAIN, 15));
+        field.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        field.setHorizontalAlignment(JTextField.RIGHT);
         field.setMargin(new Insets(6, 8, 6, 8));
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER),
@@ -112,8 +125,9 @@ public final class UiTheme {
      * @param combo combo box
      */
     public static void combo(JComboBox<?> combo) {
-        combo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        combo.setFont(new Font(FONT_NAME, Font.PLAIN, 15));
         combo.setBackground(SURFACE);
+        combo.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -122,8 +136,10 @@ public final class UiTheme {
      * @param label label
      */
     public static void label(JLabel label) {
-        label.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        label.setFont(new Font(FONT_NAME, Font.BOLD, 14));
         label.setForeground(TEXT);
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
+        label.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -135,10 +151,11 @@ public final class UiTheme {
     public static void button(JButton button, boolean primary) {
         button.setFocusPainted(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        button.setFont(new Font(FONT_NAME, Font.BOLD, 14));
         button.setBorder(BorderFactory.createEmptyBorder(8, 14, 8, 14));
         button.setBackground(primary ? PRIMARY : ACCENT);
         button.setForeground(Color.WHITE);
+        button.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -157,16 +174,21 @@ public final class UiTheme {
      * @param table table
      */
     public static void table(JTable table) {
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        table.setRowHeight(30);
+        table.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
+        table.setRowHeight(32);
         table.setGridColor(new Color(236, 232, 226));
         table.setSelectionBackground(new Color(226, 242, 239));
         table.setSelectionForeground(TEXT);
         table.setShowVerticalLines(false);
+        table.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        table.setDefaultRenderer(Object.class, renderer);
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        header.setFont(new Font(FONT_NAME, Font.BOLD, 14));
         header.setBackground(PRIMARY);
         header.setForeground(Color.WHITE);
+        header.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -177,6 +199,7 @@ public final class UiTheme {
     public static void scroll(JScrollPane scrollPane) {
         scrollPane.setBorder(BorderFactory.createLineBorder(BORDER));
         scrollPane.getViewport().setBackground(SURFACE);
+        scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -185,10 +208,11 @@ public final class UiTheme {
      * @param area text area
      */
     public static void textArea(JTextArea area) {
-        area.setFont(new Font("Consolas", Font.PLAIN, 13));
+        area.setFont(new Font(FONT_NAME, Font.PLAIN, 15));
         area.setBackground(new Color(255, 253, 249));
         area.setForeground(TEXT);
         area.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**
@@ -197,7 +221,8 @@ public final class UiTheme {
      * @param component root component
      */
     public static void applyFont(Component component) {
-        component.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        component.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
+        component.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         if (component instanceof JComponent jComponent) {
             jComponent.setOpaque(component instanceof JPanel || component instanceof JLabel ? jComponent.isOpaque() : jComponent.isOpaque());
         }

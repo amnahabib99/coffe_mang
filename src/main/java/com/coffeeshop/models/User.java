@@ -61,12 +61,12 @@ public class User extends Person {
 
     @Override
     public String getRoleDescription() {
-        return role == UserRole.MANAGER ? "Manager: full cafe administration" : "Employee: sales and invoice operations";
+        return role == UserRole.MANAGER ? "مدير: صلاحية كاملة لإدارة المقهى" : "موظف: مسؤول عن المبيعات والفواتير";
     }
 
     @Override
     public String toString() {
-        return getName() + " (" + role.getLabel() + ")";
+        return getName() + " (" + role + ")";
     }
 
     public String getUsername() {
@@ -74,7 +74,7 @@ public class User extends Person {
     }
 
     public final void setUsername(String username) throws InvalidInputException {
-        ValidationUtils.requireText(username, "Username");
+        ValidationUtils.requireText(username, "اسم المستخدم");
         this.username = username.trim();
     }
 
@@ -83,7 +83,7 @@ public class User extends Person {
     }
 
     public final void setPassword(String password) throws InvalidInputException {
-        ValidationUtils.requireText(password, "Password");
+        ValidationUtils.requireText(password, "كلمة المرور");
         this.password = password;
     }
 

@@ -61,6 +61,6 @@ public class ProductService implements Manageable<Product> {
      * @throws Exception when not found
      */
     public Product findById(int id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found."));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("المنتج غير موجود."));
     }
 }

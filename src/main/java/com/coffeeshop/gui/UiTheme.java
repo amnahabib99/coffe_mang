@@ -226,19 +226,28 @@ public final class UiTheme {
     public static void table(JTable table) {
         table.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
         table.setRowHeight(32);
-        table.setGridColor(PRIMARY);
-        table.setSelectionBackground(PRIMARY);
+        table.setGridColor(new Color(220, 220, 220));
+        table.setSelectionBackground(new Color(178, 34, 34));
         table.setSelectionForeground(Color.WHITE);
-        table.setShowVerticalLines(false);
+        table.setShowVerticalLines(true);
+        table.setShowHorizontalLines(true);
         table.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        renderer.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         table.setDefaultRenderer(Object.class, renderer);
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font(FONT_NAME, Font.BOLD, 14));
-        header.setBackground(PRIMARY);
-        header.setForeground(Color.WHITE);
+        header.setBackground(Color.WHITE);
+        header.setForeground(Color.BLACK);
         header.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        headerRenderer.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        headerRenderer.setBackground(Color.WHITE);
+        headerRenderer.setForeground(Color.BLACK);
+        headerRenderer.setFont(new Font(FONT_NAME, Font.BOLD, 14));
+        header.setDefaultRenderer(headerRenderer);
     }
 
     /**

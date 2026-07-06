@@ -6,6 +6,7 @@ import com.coffeeshop.utils.SessionManager;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import java.awt.Color;
 
 /**
  * Main role-based application window.
@@ -20,11 +21,16 @@ public class MainFrame extends JFrame {
         setSize(1100, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(UiTheme.BACKGROUND);
         buildTabs(user);
     }
 
     private void buildTabs(User user) {
         JTabbedPane tabs = new JTabbedPane();
+        tabs.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
+        tabs.setBackground(UiTheme.BACKGROUND);
+        tabs.setForeground(UiTheme.TEXT);
+        tabs.setOpaque(true);
         tabs.addTab("Home", new HomePanel());
         if (user.getRole() == UserRole.MANAGER) {
             tabs.addTab("Categories", new CategoryPanel());

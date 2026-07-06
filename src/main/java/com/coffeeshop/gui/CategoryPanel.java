@@ -31,18 +31,27 @@ public class CategoryPanel extends JPanel {
      */
     public CategoryPanel() {
         setLayout(new BorderLayout(8, 8));
+        UiTheme.page(this);
         idField.setEditable(false);
         buildForm();
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        UiTheme.table(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        UiTheme.scroll(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
         table.getSelectionModel().addListSelectionListener(event -> loadSelected());
         refresh();
     }
 
     private void buildForm() {
+        add(UiTheme.title("Category Management"), BorderLayout.NORTH);
         JPanel form = new JPanel(new GridLayout(2, 5, 6, 6));
-        form.add(new JLabel("ID"));
-        form.add(new JLabel("Name"));
-        form.add(new JLabel("Description"));
+        form.setBackground(UiTheme.SURFACE);
+        UiTheme.field(idField);
+        UiTheme.field(nameField);
+        UiTheme.field(descriptionField);
+        addHeader(form, "ID");
+        addHeader(form, "Name");
+        addHeader(form, "Description");
         form.add(new JLabel());
         form.add(new JLabel());
         form.add(idField);
@@ -51,13 +60,22 @@ public class CategoryPanel extends JPanel {
         JButton addButton = new JButton("Add");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
+        UiTheme.button(addButton, true);
+        UiTheme.button(updateButton, false);
+        UiTheme.dangerButton(deleteButton);
         form.add(addButton);
         form.add(updateButton);
         form.add(deleteButton);
-        add(form, BorderLayout.NORTH);
+        add(UiTheme.card(form), BorderLayout.SOUTH);
         addButton.addActionListener(event -> addCategory());
         updateButton.addActionListener(event -> updateCategory());
         deleteButton.addActionListener(event -> deleteCategory());
+    }
+
+    private void addHeader(JPanel form, String text) {
+        JLabel label = new JLabel(text);
+        UiTheme.label(label);
+        form.add(label);
     }
 
     private void addCategory() {

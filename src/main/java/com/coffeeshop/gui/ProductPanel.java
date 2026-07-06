@@ -41,21 +41,33 @@ public class ProductPanel extends JPanel {
      */
     public ProductPanel() {
         setLayout(new BorderLayout(8, 8));
+        UiTheme.page(this);
         idField.setEditable(false);
         buildForm();
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        UiTheme.table(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        UiTheme.scroll(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
         table.getSelectionModel().addListSelectionListener(event -> loadSelected());
         refresh();
     }
 
     private void buildForm() {
+        add(UiTheme.title("Product Management"), BorderLayout.NORTH);
         JPanel form = new JPanel(new GridLayout(2, 8, 6, 6));
-        form.add(new JLabel("ID"));
-        form.add(new JLabel("Name"));
-        form.add(new JLabel("Category"));
-        form.add(new JLabel("Price"));
-        form.add(new JLabel("Size"));
-        form.add(new JLabel("Status"));
+        form.setBackground(UiTheme.SURFACE);
+        UiTheme.field(idField);
+        UiTheme.field(nameField);
+        UiTheme.field(priceField);
+        UiTheme.field(sizeField);
+        UiTheme.combo(categoryBox);
+        UiTheme.combo(statusBox);
+        addHeader(form, "ID");
+        addHeader(form, "Name");
+        addHeader(form, "Category");
+        addHeader(form, "Price");
+        addHeader(form, "Size");
+        addHeader(form, "Status");
         form.add(new JLabel());
         form.add(new JLabel());
         form.add(idField);
@@ -67,13 +79,22 @@ public class ProductPanel extends JPanel {
         JButton addButton = new JButton("Add");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
+        UiTheme.button(addButton, true);
+        UiTheme.button(updateButton, false);
+        UiTheme.dangerButton(deleteButton);
         form.add(addButton);
         form.add(updateButton);
         form.add(deleteButton);
-        add(form, BorderLayout.NORTH);
+        add(UiTheme.card(form), BorderLayout.SOUTH);
         addButton.addActionListener(event -> addProduct());
         updateButton.addActionListener(event -> updateProduct());
         deleteButton.addActionListener(event -> deleteProduct());
+    }
+
+    private void addHeader(JPanel form, String text) {
+        JLabel label = new JLabel(text);
+        UiTheme.label(label);
+        form.add(label);
     }
 
     private void addProduct() {

@@ -31,11 +31,21 @@ public class UserManagementPanel extends JPanel {
      */
     public UserManagementPanel() {
         setLayout(new BorderLayout(8, 8));
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        UiTheme.page(this);
+        add(UiTheme.title("User Verification"), BorderLayout.NORTH);
+        UiTheme.table(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        UiTheme.scroll(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
         JPanel buttons = new JPanel();
+        buttons.setBackground(UiTheme.BACKGROUND);
         JButton activate = new JButton("Activate");
         JButton deactivate = new JButton("Deactivate");
         JButton changeRole = new JButton("Change Role");
+        UiTheme.button(activate, true);
+        UiTheme.dangerButton(deactivate);
+        UiTheme.button(changeRole, false);
+        UiTheme.combo(roleBox);
         buttons.add(activate);
         buttons.add(deactivate);
         buttons.add(roleBox);

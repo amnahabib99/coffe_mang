@@ -24,10 +24,19 @@ public class ReportsPanel extends JPanel {
      */
     public ReportsPanel() {
         setLayout(new BorderLayout());
+        UiTheme.page(this);
         JButton refreshButton = new JButton("Build Reports");
+        UiTheme.button(refreshButton, true);
         area.setEditable(false);
-        add(refreshButton, BorderLayout.NORTH);
-        add(new JScrollPane(area), BorderLayout.CENTER);
+        UiTheme.textArea(area);
+        JPanel top = new JPanel(new BorderLayout());
+        top.setBackground(UiTheme.BACKGROUND);
+        top.add(UiTheme.title("Reports"), BorderLayout.WEST);
+        top.add(refreshButton, BorderLayout.EAST);
+        add(top, BorderLayout.NORTH);
+        JScrollPane scrollPane = new JScrollPane(area);
+        UiTheme.scroll(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
         refreshButton.addActionListener(event -> buildReport());
         buildReport();
     }

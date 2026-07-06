@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 /**
@@ -29,6 +30,7 @@ public class LoginFrame extends JFrame {
         setSize(420, 230);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(UiTheme.BACKGROUND);
         buildUi();
     }
 
@@ -42,20 +44,39 @@ public class LoginFrame extends JFrame {
     }
 
     private void buildUi() {
-        JPanel form = new JPanel(new GridLayout(3, 2, 8, 8));
-        form.add(new JLabel("Username"));
+        JPanel content = new JPanel(new BorderLayout(10, 10));
+        UiTheme.page(content);
+        content.add(UiTheme.title("Coffee Shop Login"), BorderLayout.NORTH);
+
+        JPanel form = new JPanel(new GridLayout(2, 2, 10, 10));
+        form.setBackground(UiTheme.SURFACE);
+        JLabel usernameLabel = new JLabel("Username");
+        JLabel passwordLabel = new JLabel("Password");
+        UiTheme.label(usernameLabel);
+        UiTheme.label(passwordLabel);
+        UiTheme.field(usernameField);
+        UiTheme.field(passwordField);
+        form.add(usernameLabel);
         form.add(usernameField);
-        form.add(new JLabel("Password"));
+        form.add(passwordLabel);
         form.add(passwordField);
 
         JButton loginButton = new JButton("Login");
         JButton registerButton = new JButton("Register");
         JButton forgotButton = new JButton("Forgot Password");
-        form.add(loginButton);
-        form.add(registerButton);
+        UiTheme.button(loginButton, true);
+        UiTheme.button(registerButton, false);
+        UiTheme.button(forgotButton, false);
 
-        add(form, BorderLayout.CENTER);
-        add(forgotButton, BorderLayout.SOUTH);
+        JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
+        actions.setBackground(UiTheme.BACKGROUND);
+        actions.add(forgotButton);
+        actions.add(registerButton);
+        actions.add(loginButton);
+
+        content.add(UiTheme.card(form), BorderLayout.CENTER);
+        content.add(actions, BorderLayout.SOUTH);
+        add(content);
 
         loginButton.addActionListener(event -> login());
         registerButton.addActionListener(event -> new RegisterDialog(this).setVisible(true));

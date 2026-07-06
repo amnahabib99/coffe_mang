@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 /**
@@ -30,29 +31,44 @@ public class ForgotPasswordDialog extends JDialog {
         super(owner, "Forgot Password", true);
         setSize(500, 260);
         setLocationRelativeTo(owner);
+        getContentPane().setBackground(UiTheme.BACKGROUND);
         questionField.setEditable(false);
         buildUi();
     }
 
     private void buildUi() {
+        JPanel content = new JPanel(new BorderLayout(10, 10));
+        UiTheme.page(content);
+        content.add(UiTheme.title("Password Recovery"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(5, 2, 8, 8));
-        panel.add(new JLabel("Username"));
-        panel.add(usernameField);
-        panel.add(new JLabel("Security Question"));
-        panel.add(questionField);
-        panel.add(new JLabel("Security Answer"));
-        panel.add(answerField);
-        panel.add(new JLabel("New Password"));
-        panel.add(newPasswordField);
+        panel.setBackground(UiTheme.SURFACE);
+        UiTheme.field(usernameField);
+        UiTheme.field(questionField);
+        UiTheme.field(answerField);
+        UiTheme.field(newPasswordField);
+        addRow(panel, "Username", usernameField);
+        addRow(panel, "Security Question", questionField);
+        addRow(panel, "Security Answer", answerField);
+        addRow(panel, "New Password", newPasswordField);
 
         javax.swing.JButton loadButton = new javax.swing.JButton("Load Question");
         javax.swing.JButton resetButton = new javax.swing.JButton("Reset Password");
+        UiTheme.button(loadButton, false);
+        UiTheme.button(resetButton, true);
         panel.add(loadButton);
         panel.add(resetButton);
-        add(panel);
+        content.add(UiTheme.card(panel), BorderLayout.CENTER);
+        add(content);
 
         loadButton.addActionListener(event -> loadQuestion());
         resetButton.addActionListener(event -> reset());
+    }
+
+    private void addRow(JPanel panel, String labelText, JTextField field) {
+        JLabel label = new JLabel(labelText);
+        UiTheme.label(label);
+        panel.add(label);
+        panel.add(field);
     }
 
     private void loadQuestion() {

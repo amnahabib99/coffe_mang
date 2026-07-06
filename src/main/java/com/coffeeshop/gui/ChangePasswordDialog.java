@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 /**
@@ -29,18 +30,32 @@ public class ChangePasswordDialog extends JDialog {
         super(owner, "Change Password", true);
         setSize(420, 220);
         setLocationRelativeTo(owner);
+        getContentPane().setBackground(UiTheme.BACKGROUND);
+        JPanel content = new JPanel(new BorderLayout(10, 10));
+        UiTheme.page(content);
+        content.add(UiTheme.title("Change Password"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(4, 2, 8, 8));
-        panel.add(new JLabel("Old Password"));
-        panel.add(oldField);
-        panel.add(new JLabel("New Password"));
-        panel.add(newField);
-        panel.add(new JLabel("Confirm New Password"));
-        panel.add(confirmField);
-        javax.swing.JButton saveButton = new javax.swing.JButton("Save");
+        panel.setBackground(UiTheme.SURFACE);
+        UiTheme.field(oldField);
+        UiTheme.field(newField);
+        UiTheme.field(confirmField);
+        addRow(panel, "Old Password", oldField);
+        addRow(panel, "New Password", newField);
+        addRow(panel, "Confirm New Password", confirmField);
+        javax.swing.JButton saveButton = new javax.swing.JButton("Save Password");
+        UiTheme.button(saveButton, true);
         panel.add(new JLabel());
         panel.add(saveButton);
-        add(panel);
+        content.add(UiTheme.card(panel), BorderLayout.CENTER);
+        add(content);
         saveButton.addActionListener(event -> save());
+    }
+
+    private void addRow(JPanel panel, String text, JPasswordField field) {
+        JLabel label = new JLabel(text);
+        UiTheme.label(label);
+        panel.add(label);
+        panel.add(field);
     }
 
     private void save() {

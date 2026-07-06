@@ -50,20 +50,33 @@ public class OrderPanel extends JPanel {
      */
     public OrderPanel() {
         setLayout(new BorderLayout(8, 8));
+        UiTheme.page(this);
         buildTop();
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        UiTheme.table(table);
+        JScrollPane tableScroll = new JScrollPane(table);
+        UiTheme.scroll(tableScroll);
+        add(tableScroll, BorderLayout.CENTER);
         buildBottom();
         startOrder();
         loadProducts();
     }
 
     private void buildTop() {
+        JPanel wrapper = new JPanel(new BorderLayout(8, 8));
+        wrapper.setBackground(UiTheme.BACKGROUND);
+        wrapper.add(UiTheme.title("Create Order"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(2, 6, 6, 6));
-        panel.add(new JLabel("Product"));
-        panel.add(new JLabel("Quantity"));
-        panel.add(new JLabel("Customer Name"));
-        panel.add(new JLabel("Phone"));
-        panel.add(new JLabel("Type"));
+        panel.setBackground(UiTheme.SURFACE);
+        UiTheme.combo(productBox);
+        UiTheme.combo(customerTypeBox);
+        UiTheme.field(quantityField);
+        UiTheme.field(customerNameField);
+        UiTheme.field(customerPhoneField);
+        addHeader(panel, "Product");
+        addHeader(panel, "Quantity");
+        addHeader(panel, "Customer Name");
+        addHeader(panel, "Phone");
+        addHeader(panel, "Type");
         panel.add(new JLabel());
         panel.add(productBox);
         panel.add(quantityField);
@@ -71,17 +84,24 @@ public class OrderPanel extends JPanel {
         panel.add(customerPhoneField);
         panel.add(customerTypeBox);
         JButton addButton = new JButton("Add Item");
+        UiTheme.button(addButton, true);
         panel.add(addButton);
-        add(panel, BorderLayout.NORTH);
+        wrapper.add(UiTheme.card(panel), BorderLayout.CENTER);
+        add(wrapper, BorderLayout.NORTH);
         addButton.addActionListener(event -> addItem());
     }
 
     private void buildBottom() {
         JPanel bottom = new JPanel(new BorderLayout());
+        bottom.setBackground(UiTheme.BACKGROUND);
         JPanel totals = new JPanel();
+        totals.setBackground(UiTheme.BACKGROUND);
         JButton removeButton = new JButton("Remove Item");
         JButton completeButton = new JButton("Complete Order");
         JButton newButton = new JButton("New Order");
+        UiTheme.dangerButton(removeButton);
+        UiTheme.button(completeButton, true);
+        UiTheme.button(newButton, false);
         totals.add(subtotalLabel);
         totals.add(taxLabel);
         totals.add(discountLabel);
@@ -91,12 +111,21 @@ public class OrderPanel extends JPanel {
         totals.add(newButton);
         invoiceArea.setRows(8);
         invoiceArea.setEditable(false);
+        UiTheme.textArea(invoiceArea);
         bottom.add(totals, BorderLayout.NORTH);
-        bottom.add(new JScrollPane(invoiceArea), BorderLayout.CENTER);
+        JScrollPane invoiceScroll = new JScrollPane(invoiceArea);
+        UiTheme.scroll(invoiceScroll);
+        bottom.add(invoiceScroll, BorderLayout.CENTER);
         add(bottom, BorderLayout.SOUTH);
         removeButton.addActionListener(event -> removeItem());
         completeButton.addActionListener(event -> completeOrder());
         newButton.addActionListener(event -> startOrder());
+    }
+
+    private void addHeader(JPanel panel, String text) {
+        JLabel label = new JLabel(text);
+        UiTheme.label(label);
+        panel.add(label);
     }
 
     private void loadProducts() {

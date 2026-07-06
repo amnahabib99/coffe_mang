@@ -31,12 +31,24 @@ public class InvoicePanel extends JPanel {
      */
     public InvoicePanel() {
         setLayout(new BorderLayout(8, 8));
+        UiTheme.page(this);
         JButton refreshButton = new JButton("Refresh");
-        add(refreshButton, BorderLayout.NORTH);
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        UiTheme.button(refreshButton, true);
+        JPanel top = new JPanel(new BorderLayout());
+        top.setBackground(UiTheme.BACKGROUND);
+        top.add(UiTheme.title("Invoices and Sales"), BorderLayout.WEST);
+        top.add(refreshButton, BorderLayout.EAST);
+        add(top, BorderLayout.NORTH);
+        UiTheme.table(table);
+        JScrollPane tableScroll = new JScrollPane(table);
+        UiTheme.scroll(tableScroll);
+        add(tableScroll, BorderLayout.CENTER);
         detailsArea.setRows(10);
         detailsArea.setEditable(false);
-        add(new JScrollPane(detailsArea), BorderLayout.SOUTH);
+        UiTheme.textArea(detailsArea);
+        JScrollPane detailsScroll = new JScrollPane(detailsArea);
+        UiTheme.scroll(detailsScroll);
+        add(detailsScroll, BorderLayout.SOUTH);
         refreshButton.addActionListener(event -> refresh());
         table.getSelectionModel().addListSelectionListener(event -> showSelected());
         refresh();

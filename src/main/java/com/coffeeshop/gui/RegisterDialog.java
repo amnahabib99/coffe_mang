@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 /**
@@ -37,31 +38,51 @@ public class RegisterDialog extends JDialog {
         super(owner, "Register User", true);
         setSize(460, 360);
         setLocationRelativeTo(owner);
+        getContentPane().setBackground(UiTheme.BACKGROUND);
         buildUi();
     }
 
     private void buildUi() {
+        JPanel content = new JPanel(new BorderLayout(10, 10));
+        UiTheme.page(content);
+        content.add(UiTheme.title("Register User"), BorderLayout.NORTH);
         JPanel panel = new JPanel(new GridLayout(8, 2, 8, 8));
-        panel.add(new JLabel("Name"));
-        panel.add(nameField);
-        panel.add(new JLabel("Username"));
-        panel.add(usernameField);
-        panel.add(new JLabel("Password"));
-        panel.add(passwordField);
-        panel.add(new JLabel("Phone"));
-        panel.add(phoneField);
-        panel.add(new JLabel("Role"));
+        panel.setBackground(UiTheme.SURFACE);
+        styleFields();
+        addRow(panel, "Name", nameField);
+        addRow(panel, "Username", usernameField);
+        addRow(panel, "Password", passwordField);
+        addRow(panel, "Phone", phoneField);
+        JLabel roleLabel = new JLabel("Role");
+        UiTheme.label(roleLabel);
+        UiTheme.combo(roleBox);
+        panel.add(roleLabel);
         panel.add(roleBox);
-        panel.add(new JLabel("Security Question"));
-        panel.add(questionField);
-        panel.add(new JLabel("Security Answer"));
-        panel.add(answerField);
-
-        javax.swing.JButton saveButton = new javax.swing.JButton("Save");
+        addRow(panel, "Security Question", questionField);
+        addRow(panel, "Security Answer", answerField);
+        javax.swing.JButton saveButton = new javax.swing.JButton("Save User");
+        UiTheme.button(saveButton, true);
         panel.add(new JLabel());
         panel.add(saveButton);
-        add(panel);
+        content.add(UiTheme.card(panel), BorderLayout.CENTER);
+        add(content);
         saveButton.addActionListener(event -> save());
+    }
+
+    private void styleFields() {
+        UiTheme.field(nameField);
+        UiTheme.field(usernameField);
+        UiTheme.field(passwordField);
+        UiTheme.field(phoneField);
+        UiTheme.field(questionField);
+        UiTheme.field(answerField);
+    }
+
+    private void addRow(JPanel panel, String labelText, JTextField field) {
+        JLabel label = new JLabel(labelText);
+        UiTheme.label(label);
+        panel.add(label);
+        panel.add(field);
     }
 
     private void save() {

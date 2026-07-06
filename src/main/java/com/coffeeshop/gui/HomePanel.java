@@ -17,12 +17,15 @@ public class HomePanel extends JPanel {
      */
     public HomePanel() {
         setLayout(new BorderLayout());
+        UiTheme.page(this);
         User user = SessionManager.getCurrentUser();
-        add(new JLabel("Welcome, " + user.getName() + " - " + user.getRole().getLabel()), BorderLayout.NORTH);
+        add(UiTheme.title("Welcome, " + user.getName()), BorderLayout.NORTH);
         JTextArea area = new JTextArea();
+        UiTheme.textArea(area);
         area.setEditable(false);
-        area.setText(user.getRoleDescription() + "\n\nManager features: categories, products, users, reports, invoices, orders.\n"
-                + "Employee features: orders, invoices, account settings.");
-        add(area, BorderLayout.CENTER);
+        area.setText(user.getRoleDescription() + "\n\nRole: " + user.getRole().getLabel()
+                + "\n\nManager features:\n- Categories\n- Products\n- User Management\n- Reports\n- Invoices\n- Orders\n\n"
+                + "Employee features:\n- Orders\n- Invoices\n- Account Settings");
+        add(UiTheme.card(area), BorderLayout.CENTER);
     }
 }

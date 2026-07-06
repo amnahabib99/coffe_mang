@@ -28,7 +28,8 @@ public class ChangePasswordDialog extends JDialog {
      */
     public ChangePasswordDialog(JFrame owner) {
         super(owner, "تغيير كلمة المرور", true);
-        setSize(420, 220);
+        setSize(560, 320);
+        setMinimumSize(new java.awt.Dimension(500, 280));
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         JPanel content = new JPanel(new BorderLayout(10, 10));

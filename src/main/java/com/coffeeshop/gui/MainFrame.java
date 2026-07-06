@@ -19,6 +19,7 @@ public class MainFrame extends JFrame {
         User user = SessionManager.getCurrentUser();
         setTitle("نظام إدارة المقهى - " + user);
         setSize(1100, 720);
+        setMinimumSize(new java.awt.Dimension(1000, 660));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(UiTheme.BACKGROUND);

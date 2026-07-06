@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -27,7 +28,8 @@ public class LoginFrame extends JFrame {
      */
     public LoginFrame() {
         setTitle("تسجيل الدخول - نظام إدارة المقهى");
-        setSize(420, 230);
+        setSize(620, 360);
+        setMinimumSize(new Dimension(560, 330));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(UiTheme.BACKGROUND);
@@ -44,11 +46,15 @@ public class LoginFrame extends JFrame {
     }
 
     private void buildUi() {
-        JPanel content = new JPanel(new BorderLayout(10, 10));
+        JPanel content = new JPanel(new BorderLayout(14, 14));
         UiTheme.page(content);
-        content.add(UiTheme.title("تسجيل الدخول إلى نظام إدارة المقهى"), BorderLayout.NORTH);
+        JPanel header = new JPanel(new BorderLayout(4, 4));
+        header.setBackground(UiTheme.BACKGROUND);
+        header.add(UiTheme.title("تسجيل الدخول إلى نظام إدارة المقهى"), BorderLayout.NORTH);
+        header.add(UiTheme.subtitle("أدخل بيانات الحساب للمتابعة"), BorderLayout.SOUTH);
+        content.add(header, BorderLayout.NORTH);
 
-        JPanel form = new JPanel(new GridLayout(2, 2, 10, 10));
+        JPanel form = new JPanel(new GridLayout(2, 2, 12, 12));
         form.setBackground(UiTheme.SURFACE);
         JLabel usernameLabel = new JLabel("اسم المستخدم");
         JLabel passwordLabel = new JLabel("كلمة المرور");
@@ -56,6 +62,8 @@ public class LoginFrame extends JFrame {
         UiTheme.label(passwordLabel);
         UiTheme.field(usernameField);
         UiTheme.field(passwordField);
+        usernameField.setPreferredSize(new Dimension(300, 38));
+        passwordField.setPreferredSize(new Dimension(300, 38));
         form.add(usernameLabel);
         form.add(usernameField);
         form.add(passwordLabel);
@@ -68,13 +76,17 @@ public class LoginFrame extends JFrame {
         UiTheme.button(registerButton, false);
         UiTheme.button(forgotButton, false);
 
-        JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
+        JPanel actions = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
         actions.setBackground(UiTheme.BACKGROUND);
         actions.add(forgotButton);
         actions.add(registerButton);
         actions.add(loginButton);
 
-        content.add(UiTheme.card(form), BorderLayout.CENTER);
+        JPanel formCard = UiTheme.card(form);
+        formCard.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createLineBorder(UiTheme.BORDER),
+                javax.swing.BorderFactory.createEmptyBorder(22, 24, 22, 24)));
+        content.add(formCard, BorderLayout.CENTER);
         content.add(actions, BorderLayout.SOUTH);
         add(content);
 

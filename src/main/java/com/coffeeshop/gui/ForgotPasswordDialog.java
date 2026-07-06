@@ -29,7 +29,8 @@ public class ForgotPasswordDialog extends JDialog {
      */
     public ForgotPasswordDialog(JFrame owner) {
         super(owner, "استعادة كلمة المرور", true);
-        setSize(500, 260);
+        setSize(620, 360);
+        setMinimumSize(new java.awt.Dimension(560, 320));
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         questionField.setEditable(false);

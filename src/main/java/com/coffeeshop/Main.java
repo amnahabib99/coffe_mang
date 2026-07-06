@@ -19,6 +19,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                com.coffeeshop.gui.UiTheme.configureDefaults();
                 SchemaInitializer.initialize();
             } catch (Exception ex) {
                 LoginFrame.showStartupError(ex.getMessage());

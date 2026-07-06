@@ -29,7 +29,8 @@ public class ChangeSecurityQuestionDialog extends JDialog {
      */
     public ChangeSecurityQuestionDialog(JFrame owner) {
         super(owner, "تغيير سؤال الأمان", true);
-        setSize(500, 230);
+        setSize(620, 340);
+        setMinimumSize(new java.awt.Dimension(560, 300));
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         JPanel content = new JPanel(new BorderLayout(10, 10));

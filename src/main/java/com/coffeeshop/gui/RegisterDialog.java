@@ -36,7 +36,8 @@ public class RegisterDialog extends JDialog {
      */
     public RegisterDialog(JFrame owner) {
         super(owner, "إنشاء حساب مستخدم", true);
-        setSize(460, 360);
+        setSize(620, 500);
+        setMinimumSize(new java.awt.Dimension(560, 440));
         setLocationRelativeTo(owner);
         getContentPane().setBackground(UiTheme.BACKGROUND);
         buildUi();

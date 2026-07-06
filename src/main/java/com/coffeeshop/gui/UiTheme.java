@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.BorderLayout;
@@ -18,6 +20,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 
@@ -26,23 +29,39 @@ import java.awt.Insets;
  */
 public final class UiTheme {
     /** Warm page background. */
-    public static final Color BACKGROUND = new Color(246, 243, 238);
+    public static final Color BACKGROUND = new Color(245, 241, 234);
     /** Panel surface color. */
     public static final Color SURFACE = Color.WHITE;
     /** Primary coffee accent. */
-    public static final Color PRIMARY = new Color(78, 52, 46);
+    public static final Color PRIMARY = new Color(70, 43, 35);
     /** Secondary teal accent. */
-    public static final Color ACCENT = new Color(0, 121, 107);
+    public static final Color ACCENT = new Color(13, 110, 103);
     /** Text color. */
-    public static final Color TEXT = new Color(38, 38, 38);
+    public static final Color TEXT = new Color(31, 31, 31);
     /** Muted border color. */
-    public static final Color BORDER = new Color(222, 216, 207);
+    public static final Color BORDER = new Color(218, 208, 196);
     /** Soft danger color. */
-    public static final Color DANGER = new Color(174, 53, 53);
+    public static final Color DANGER = new Color(173, 39, 39);
     /** Arabic-friendly application font family. */
     public static final String FONT_NAME = "Tahoma";
 
     private UiTheme() {
+    }
+
+    /**
+     * Applies application-wide UI defaults before building windows.
+     */
+    public static void configureDefaults() {
+        Font base = new Font(FONT_NAME, Font.PLAIN, 14);
+        UIManager.put("Label.font", base);
+        UIManager.put("Button.font", new Font(FONT_NAME, Font.BOLD, 14));
+        UIManager.put("TextField.font", base);
+        UIManager.put("PasswordField.font", base);
+        UIManager.put("ComboBox.font", base);
+        UIManager.put("Table.font", base);
+        UIManager.put("TableHeader.font", new Font(FONT_NAME, Font.BOLD, 14));
+        UIManager.put("OptionPane.messageFont", base);
+        UIManager.put("OptionPane.buttonFont", new Font(FONT_NAME, Font.BOLD, 13));
     }
 
     /**
@@ -64,7 +83,7 @@ public final class UiTheme {
      */
     public static JLabel title(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font(FONT_NAME, Font.BOLD, 23));
+        label.setFont(new Font(FONT_NAME, Font.BOLD, 20));
         label.setForeground(PRIMARY);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 0));
         label.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -110,7 +129,7 @@ public final class UiTheme {
      * @param field text field
      */
     public static void field(JTextField field) {
-        field.setFont(new Font(FONT_NAME, Font.PLAIN, 15));
+        field.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
         field.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         field.setHorizontalAlignment(JTextField.RIGHT);
         field.setMargin(new Insets(6, 8, 6, 8));
@@ -151,11 +170,16 @@ public final class UiTheme {
     public static void button(JButton button, boolean primary) {
         button.setFocusPainted(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.setUI(new BasicButtonUI());
         button.setFont(new Font(FONT_NAME, Font.BOLD, 14));
-        button.setBorder(BorderFactory.createEmptyBorder(8, 14, 8, 14));
+        button.setBorder(BorderFactory.createEmptyBorder(9, 16, 9, 16));
         button.setBackground(primary ? PRIMARY : ACCENT);
         button.setForeground(Color.WHITE);
         button.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        button.setOpaque(true);
+        button.setContentAreaFilled(true);
+        button.setPreferredSize(new Dimension(132, 40));
+        button.setMinimumSize(new Dimension(112, 38));
     }
 
     /**

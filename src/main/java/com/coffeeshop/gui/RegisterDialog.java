@@ -62,7 +62,7 @@ public class RegisterDialog extends JDialog {
         addRow(panel, "سؤال الأمان", questionField);
         addRow(panel, "إجابة سؤال الأمان", answerField);
         javax.swing.JButton saveButton = new javax.swing.JButton("حفظ المستخدم");
-        UiTheme.button(saveButton, true);
+        UiTheme.saveButton(saveButton);
         panel.add(new JLabel());
         panel.add(saveButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);

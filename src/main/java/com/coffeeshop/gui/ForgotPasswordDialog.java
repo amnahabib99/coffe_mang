@@ -55,7 +55,7 @@ public class ForgotPasswordDialog extends JDialog {
         javax.swing.JButton loadButton = new javax.swing.JButton("عرض السؤال");
         javax.swing.JButton resetButton = new javax.swing.JButton("تحديث كلمة المرور");
         UiTheme.button(loadButton, false);
-        UiTheme.button(resetButton, true);
+        UiTheme.saveButton(resetButton);
         panel.add(loadButton);
         panel.add(resetButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);

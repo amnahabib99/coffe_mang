@@ -30,19 +30,21 @@ import java.awt.Container;
  */
 public final class UiTheme {
     /** Warm page background. */
-    public static final Color BACKGROUND = new Color(245, 241, 234);
+    public static final Color BACKGROUND = Color.WHITE;
     /** Panel surface color. */
     public static final Color SURFACE = Color.WHITE;
     /** Primary coffee accent. */
-    public static final Color PRIMARY = new Color(70, 43, 35);
+    public static final Color PRIMARY = new Color(178, 34, 34);
     /** Secondary teal accent. */
-    public static final Color ACCENT = new Color(13, 110, 103);
+    public static final Color ACCENT = new Color(178, 34, 34);
     /** Text color. */
-    public static final Color TEXT = new Color(31, 31, 31);
+    public static final Color TEXT = new Color(178, 34, 34);
     /** Muted border color. */
-    public static final Color BORDER = new Color(218, 208, 196);
+    public static final Color BORDER = new Color(178, 34, 34);
     /** Soft danger color. */
-    public static final Color DANGER = new Color(173, 39, 39);
+    public static final Color DANGER = new Color(178, 34, 34);
+    /** Green used for save and confirmation buttons only. */
+    public static final Color SAVE = new Color(34, 139, 34);
     /** Arabic-friendly application font family. */
     public static final String FONT_NAME = "Tahoma";
 
@@ -101,7 +103,7 @@ public final class UiTheme {
     public static JLabel subtitle(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
-        label.setForeground(new Color(96, 86, 78));
+        label.setForeground(PRIMARY);
         label.setHorizontalAlignment(SwingConstants.RIGHT);
         label.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         return label;
@@ -180,8 +182,8 @@ public final class UiTheme {
         button.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         button.setOpaque(true);
         button.setContentAreaFilled(true);
-        button.setPreferredSize(new Dimension(132, 40));
-        button.setMinimumSize(new Dimension(112, 38));
+        button.setPreferredSize(new Dimension(180, 42));
+        button.setMinimumSize(new Dimension(150, 40));
     }
 
     /**
@@ -195,6 +197,16 @@ public final class UiTheme {
     }
 
     /**
+     * Styles save and confirmation buttons in green.
+     *
+     * @param button button
+     */
+    public static void saveButton(JButton button) {
+        button(button, true);
+        button.setBackground(SAVE);
+    }
+
+    /**
      * Styles a table and its scroll pane.
      *
      * @param table table
@@ -202,9 +214,9 @@ public final class UiTheme {
     public static void table(JTable table) {
         table.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
         table.setRowHeight(32);
-        table.setGridColor(new Color(236, 232, 226));
-        table.setSelectionBackground(new Color(226, 242, 239));
-        table.setSelectionForeground(TEXT);
+        table.setGridColor(PRIMARY);
+        table.setSelectionBackground(PRIMARY);
+        table.setSelectionForeground(Color.WHITE);
         table.setShowVerticalLines(false);
         table.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -235,7 +247,7 @@ public final class UiTheme {
      */
     public static void textArea(JTextArea area) {
         area.setFont(new Font(FONT_NAME, Font.PLAIN, 15));
-        area.setBackground(new Color(255, 253, 249));
+        area.setBackground(Color.WHITE);
         area.setForeground(TEXT);
         area.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

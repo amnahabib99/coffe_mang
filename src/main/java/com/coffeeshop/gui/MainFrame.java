@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
         setTitle("نظام إدارة المقهى - " + user);
         setSize(1100, 720);
         setMinimumSize(new java.awt.Dimension(1000, 660));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(UiTheme.BACKGROUND);
@@ -43,7 +44,7 @@ public class MainFrame extends JFrame {
 
         JPanel sidebar = new JPanel(new BorderLayout(8, 8));
         sidebar.setBackground(UiTheme.PRIMARY);
-        sidebar.setPreferredSize(new Dimension(230, 0));
+        sidebar.setPreferredSize(new Dimension(300, 0));
         sidebar.setBorder(BorderFactory.createEmptyBorder(16, 12, 16, 12));
 
         JLabel title = new JLabel("نظام إدارة المقهى");
@@ -83,7 +84,7 @@ public class MainFrame extends JFrame {
         contentPanel.add(panel, name);
         JButton button = new JButton(name);
         UiTheme.button(button, false);
-        button.setPreferredSize(new Dimension(190, 42));
+        button.setPreferredSize(new Dimension(250, 46));
         button.setBackground(UiTheme.ACCENT);
         button.addActionListener(event -> cardLayout.show(contentPanel, name));
         menu.add(button);

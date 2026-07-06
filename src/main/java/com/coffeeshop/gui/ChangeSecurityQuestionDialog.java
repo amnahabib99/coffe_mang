@@ -45,7 +45,7 @@ public class ChangeSecurityQuestionDialog extends JDialog {
         addRow(panel, "سؤال الأمان الجديد", questionField);
         addRow(panel, "إجابة سؤال الأمان الجديدة", answerField);
         javax.swing.JButton saveButton = new javax.swing.JButton("حفظ سؤال الأمان");
-        UiTheme.button(saveButton, true);
+        UiTheme.saveButton(saveButton);
         panel.add(new JLabel());
         panel.add(saveButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);

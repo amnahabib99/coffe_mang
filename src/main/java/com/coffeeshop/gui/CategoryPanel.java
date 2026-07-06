@@ -61,7 +61,7 @@ public class CategoryPanel extends JPanel {
         JButton addButton = new JButton("إضافة");
         JButton updateButton = new JButton("تحديث");
         JButton deleteButton = new JButton("حذف");
-        UiTheme.button(addButton, true);
+        UiTheme.saveButton(addButton);
         UiTheme.button(updateButton, false);
         UiTheme.dangerButton(deleteButton);
         form.add(addButton);

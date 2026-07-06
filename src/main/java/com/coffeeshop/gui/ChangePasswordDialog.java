@@ -44,7 +44,7 @@ public class ChangePasswordDialog extends JDialog {
         addRow(panel, "كلمة المرور الجديدة", newField);
         addRow(panel, "تأكيد كلمة المرور", confirmField);
         javax.swing.JButton saveButton = new javax.swing.JButton("حفظ كلمة المرور");
-        UiTheme.button(saveButton, true);
+        UiTheme.saveButton(saveButton);
         panel.add(new JLabel());
         panel.add(saveButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);

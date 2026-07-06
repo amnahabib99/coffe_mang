@@ -85,7 +85,7 @@ public class OrderPanel extends JPanel {
         panel.add(customerPhoneField);
         panel.add(customerTypeBox);
         JButton addButton = new JButton("إضافة للطلب");
-        UiTheme.button(addButton, true);
+        UiTheme.saveButton(addButton);
         panel.add(addButton);
         wrapper.add(UiTheme.card(panel), BorderLayout.CENTER);
         add(wrapper, BorderLayout.NORTH);
@@ -101,7 +101,7 @@ public class OrderPanel extends JPanel {
         JButton completeButton = new JButton("إتمام الطلب");
         JButton newButton = new JButton("طلب جديد");
         UiTheme.dangerButton(removeButton);
-        UiTheme.button(completeButton, true);
+        UiTheme.saveButton(completeButton);
         UiTheme.button(newButton, false);
         totals.add(subtotalLabel);
         totals.add(taxLabel);

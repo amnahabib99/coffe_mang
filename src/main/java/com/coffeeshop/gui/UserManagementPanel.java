@@ -46,8 +46,8 @@ public class UserManagementPanel extends JPanel {
         JButton activate = new JButton("تفعيل");
         JButton deactivate = new JButton("إيقاف");
         JButton changeRole = new JButton("تغيير الدور");
-        UiTheme.button(register, true);
-        UiTheme.button(activate, true);
+        UiTheme.saveButton(register);
+        UiTheme.saveButton(activate);
         UiTheme.dangerButton(deactivate);
         UiTheme.button(changeRole, false);
         UiTheme.combo(roleBox);

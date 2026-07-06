@@ -81,7 +81,7 @@ public class ProductPanel extends JPanel {
         JButton updateButton = new JButton("تحديث");
         JButton deleteButton = new JButton("حذف");
         UiTheme.saveButton(addButton);
-        UiTheme.button(updateButton, false);
+        UiTheme.refreshButton(updateButton);
         UiTheme.dangerButton(deleteButton);
         form.add(addButton);
         form.add(updateButton);

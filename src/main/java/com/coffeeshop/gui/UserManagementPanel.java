@@ -49,7 +49,7 @@ public class UserManagementPanel extends JPanel {
         UiTheme.saveButton(register);
         UiTheme.saveButton(activate);
         UiTheme.dangerButton(deactivate);
-        UiTheme.button(changeRole, false);
+        UiTheme.refreshButton(changeRole);
         UiTheme.combo(roleBox);
         buttons.add(register);
         buttons.add(activate);

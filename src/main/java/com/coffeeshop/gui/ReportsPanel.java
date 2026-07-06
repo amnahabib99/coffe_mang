@@ -26,7 +26,7 @@ public class ReportsPanel extends JPanel {
         setLayout(new BorderLayout());
         UiTheme.page(this);
         JButton refreshButton = new JButton("إنشاء التقرير");
-        UiTheme.button(refreshButton, true);
+        UiTheme.refreshButton(refreshButton);
         area.setEditable(false);
         UiTheme.textArea(area);
         JPanel top = new JPanel(new BorderLayout());

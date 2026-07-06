@@ -45,6 +45,8 @@ public final class UiTheme {
     public static final Color DANGER = new Color(178, 34, 34);
     /** Green used for save and confirmation buttons only. */
     public static final Color SAVE = new Color(34, 139, 34);
+    /** Cyan used only for refresh/update actions. */
+    public static final Color REFRESH = new Color(0, 150, 180);
     /** Arabic-friendly application font family. */
     public static final String FONT_NAME = "Tahoma";
 
@@ -204,6 +206,16 @@ public final class UiTheme {
     public static void saveButton(JButton button) {
         button(button, true);
         button.setBackground(SAVE);
+    }
+
+    /**
+     * Styles refresh/update buttons in cyan.
+     *
+     * @param button button
+     */
+    public static void refreshButton(JButton button) {
+        button(button, false);
+        button.setBackground(REFRESH);
     }
 
     /**

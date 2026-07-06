@@ -33,7 +33,7 @@ public class InvoicePanel extends JPanel {
         setLayout(new BorderLayout(8, 8));
         UiTheme.page(this);
         JButton refreshButton = new JButton("تحديث");
-        UiTheme.button(refreshButton, true);
+        UiTheme.refreshButton(refreshButton);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
         top.add(UiTheme.title("الفواتير والمبيعات"), BorderLayout.LINE_START);

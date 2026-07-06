@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -53,8 +54,9 @@ public class MainFrame extends JFrame {
         title.setHorizontalAlignment(JLabel.RIGHT);
         sidebar.add(title, BorderLayout.NORTH);
 
-        JPanel menu = new JPanel(new GridLayout(0, 1, 0, 8));
+        JPanel menu = new JPanel(new GridLayout(0, 1, 0, 14));
         menu.setBackground(UiTheme.PRIMARY);
+        menu.setBorder(BorderFactory.createEmptyBorder(12, 0, 12, 0));
 
         addScreen(menu, "الرئيسية", new HomePanel());
         if (user.getRole() == UserRole.MANAGER) {
@@ -86,6 +88,10 @@ public class MainFrame extends JFrame {
         UiTheme.button(button, false);
         button.setPreferredSize(new Dimension(250, 46));
         button.setBackground(UiTheme.ACCENT);
+        button.setHorizontalAlignment(SwingConstants.CENTER);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(java.awt.Color.WHITE, 1),
+                BorderFactory.createEmptyBorder(10, 16, 10, 16)));
         button.addActionListener(event -> cardLayout.show(contentPanel, name));
         menu.add(button);
     }

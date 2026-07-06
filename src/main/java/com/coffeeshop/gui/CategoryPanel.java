@@ -39,6 +39,7 @@ public class CategoryPanel extends JPanel {
         UiTheme.scroll(scrollPane);
         add(scrollPane, BorderLayout.CENTER);
         table.getSelectionModel().addListSelectionListener(event -> loadSelected());
+        UiTheme.rtl(this);
         refresh();
     }
 

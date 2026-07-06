@@ -49,6 +49,7 @@ public class ChangePasswordDialog extends JDialog {
         panel.add(saveButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);
         add(content);
+        UiTheme.rtl(getContentPane());
         saveButton.addActionListener(event -> save());
     }
 

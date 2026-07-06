@@ -54,6 +54,7 @@ public class UserManagementPanel extends JPanel {
         activate.addActionListener(event -> updateStatus(UserStatus.ACTIVE));
         deactivate.addActionListener(event -> updateStatus(UserStatus.INACTIVE));
         changeRole.addActionListener(event -> changeRole());
+        UiTheme.rtl(this);
         refresh();
     }
 

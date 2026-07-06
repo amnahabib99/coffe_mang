@@ -57,6 +57,7 @@ public class OrderPanel extends JPanel {
         UiTheme.scroll(tableScroll);
         add(tableScroll, BorderLayout.CENTER);
         buildBottom();
+        UiTheme.rtl(this);
         startOrder();
         loadProducts();
     }

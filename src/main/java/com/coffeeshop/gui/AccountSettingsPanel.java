@@ -24,5 +24,6 @@ public class AccountSettingsPanel extends JPanel {
         add(securityButton);
         passwordButton.addActionListener(event -> new ChangePasswordDialog(owner).setVisible(true));
         securityButton.addActionListener(event -> new ChangeSecurityQuestionDialog(owner).setVisible(true));
+        UiTheme.rtl(this);
     }
 }

@@ -78,9 +78,9 @@ public class LoginFrame extends JFrame {
 
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
         actions.setBackground(UiTheme.BACKGROUND);
-        actions.add(forgotButton);
-        actions.add(registerButton);
         actions.add(loginButton);
+        actions.add(registerButton);
+        actions.add(forgotButton);
 
         JPanel formCard = UiTheme.card(form);
         formCard.setBorder(javax.swing.BorderFactory.createCompoundBorder(
@@ -89,6 +89,7 @@ public class LoginFrame extends JFrame {
         content.add(formCard, BorderLayout.CENTER);
         content.add(actions, BorderLayout.SOUTH);
         add(content);
+        UiTheme.rtl(getContentPane());
 
         loginButton.addActionListener(event -> login());
         registerButton.addActionListener(event -> new RegisterDialog(this).setVisible(true));

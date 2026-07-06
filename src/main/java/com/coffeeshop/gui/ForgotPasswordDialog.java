@@ -60,6 +60,7 @@ public class ForgotPasswordDialog extends JDialog {
         panel.add(resetButton);
         content.add(UiTheme.card(panel), BorderLayout.CENTER);
         add(content);
+        UiTheme.rtl(getContentPane());
 
         loadButton.addActionListener(event -> loadQuestion());
         resetButton.addActionListener(event -> reset());

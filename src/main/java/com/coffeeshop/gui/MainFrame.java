@@ -45,5 +45,6 @@ public class MainFrame extends JFrame {
         }
         tabs.addTab("إعدادات الحساب", new AccountSettingsPanel(this));
         add(tabs);
+        UiTheme.rtl(getContentPane());
     }
 }

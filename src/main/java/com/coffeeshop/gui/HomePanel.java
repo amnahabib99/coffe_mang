@@ -27,5 +27,6 @@ public class HomePanel extends JPanel {
                 + "\n\nصلاحيات المدير:\n- إدارة التصنيفات\n- إدارة المنتجات\n- إدارة المستخدمين\n- التقارير\n- الفواتير\n- الطلبات\n\n"
                 + "صلاحيات الموظف:\n- إنشاء الطلبات\n- عرض الفواتير\n- إعدادات الحساب");
         add(UiTheme.card(area), BorderLayout.CENTER);
+        UiTheme.rtl(this);
     }
 }

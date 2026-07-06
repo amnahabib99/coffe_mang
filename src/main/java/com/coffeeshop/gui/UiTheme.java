@@ -23,6 +23,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Container;
 
 /**
  * Shared Swing styling helpers for a cleaner, consistent cafe interface.
@@ -120,6 +121,7 @@ public final class UiTheme {
                 BorderFactory.createLineBorder(BORDER),
                 BorderFactory.createEmptyBorder(14, 14, 14, 14)));
         panel.add(content, BorderLayout.CENTER);
+        rtl(panel);
         return panel;
     }
 
@@ -237,6 +239,33 @@ public final class UiTheme {
         area.setForeground(TEXT);
         area.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    }
+
+    /**
+     * Applies right-to-left orientation recursively after a UI tree is built.
+     *
+     * @param component root component
+     */
+    public static void rtl(Component component) {
+        component.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        if (component instanceof JLabel label) {
+            label.setHorizontalAlignment(SwingConstants.RIGHT);
+        }
+        if (component instanceof JTextField field) {
+            field.setHorizontalAlignment(JTextField.RIGHT);
+        }
+        if (component instanceof JTextArea area) {
+            area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        }
+        if (component instanceof JTable table) {
+            table(table);
+        }
+        if (component instanceof Container container) {
+            container.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+            for (Component child : container.getComponents()) {
+                rtl(child);
+            }
+        }
     }
 
     /**

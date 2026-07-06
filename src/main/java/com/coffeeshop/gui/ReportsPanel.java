@@ -31,13 +31,14 @@ public class ReportsPanel extends JPanel {
         UiTheme.textArea(area);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
-        top.add(UiTheme.title("التقارير"), BorderLayout.WEST);
-        top.add(refreshButton, BorderLayout.EAST);
+        top.add(UiTheme.title("التقارير"), BorderLayout.LINE_START);
+        top.add(refreshButton, BorderLayout.LINE_END);
         add(top, BorderLayout.NORTH);
         JScrollPane scrollPane = new JScrollPane(area);
         UiTheme.scroll(scrollPane);
         add(scrollPane, BorderLayout.CENTER);
         refreshButton.addActionListener(event -> buildReport());
+        UiTheme.rtl(this);
         buildReport();
     }
 

@@ -36,8 +36,8 @@ public class InvoicePanel extends JPanel {
         UiTheme.button(refreshButton, true);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
-        top.add(UiTheme.title("الفواتير والمبيعات"), BorderLayout.WEST);
-        top.add(refreshButton, BorderLayout.EAST);
+        top.add(UiTheme.title("الفواتير والمبيعات"), BorderLayout.LINE_START);
+        top.add(refreshButton, BorderLayout.LINE_END);
         add(top, BorderLayout.NORTH);
         UiTheme.table(table);
         JScrollPane tableScroll = new JScrollPane(table);
@@ -51,6 +51,7 @@ public class InvoicePanel extends JPanel {
         add(detailsScroll, BorderLayout.SOUTH);
         refreshButton.addActionListener(event -> refresh());
         table.getSelectionModel().addListSelectionListener(event -> showSelected());
+        UiTheme.rtl(this);
         refresh();
     }
 

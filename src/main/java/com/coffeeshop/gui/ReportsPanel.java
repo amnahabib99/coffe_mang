@@ -26,18 +26,25 @@ public class ReportsPanel extends JPanel {
         setLayout(new BorderLayout());
         UiTheme.page(this);
         JButton refreshButton = new JButton("إنشاء التقرير");
+        JButton printButton = new JButton("طباعة");
         UiTheme.refreshButton(refreshButton);
+        UiTheme.button(printButton, false);
         area.setEditable(false);
         UiTheme.textArea(area);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
         top.add(UiTheme.title("التقارير"), BorderLayout.LINE_START);
-        top.add(refreshButton, BorderLayout.LINE_END);
+        JPanel actions = new JPanel();
+        actions.setBackground(UiTheme.BACKGROUND);
+        actions.add(printButton);
+        actions.add(refreshButton);
+        top.add(actions, BorderLayout.LINE_END);
         add(top, BorderLayout.NORTH);
         JScrollPane scrollPane = new JScrollPane(area);
         UiTheme.scroll(scrollPane);
         add(scrollPane, BorderLayout.CENTER);
         refreshButton.addActionListener(event -> buildReport());
+        printButton.addActionListener(event -> printReport());
         UiTheme.rtl(this);
         buildReport();
     }
@@ -56,6 +63,19 @@ public class ReportsPanel extends JPanel {
             area.setText(builder.toString());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في التقارير", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void printReport() {
+        try {
+            if (area.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "لا يوجد تقرير للطباعة.");
+                return;
+            }
+            area.print();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "تعذرت طباعة التقرير: " + ex.getMessage(),
+                    "خطأ في الطباعة", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -33,11 +33,17 @@ public class InvoicePanel extends JPanel {
         setLayout(new BorderLayout(8, 8));
         UiTheme.page(this);
         JButton refreshButton = new JButton("تحديث");
+        JButton printButton = new JButton("طباعة");
         UiTheme.refreshButton(refreshButton);
+        UiTheme.button(printButton, false);
         JPanel top = new JPanel(new BorderLayout());
         top.setBackground(UiTheme.BACKGROUND);
         top.add(UiTheme.title("الفواتير والمبيعات"), BorderLayout.LINE_START);
-        top.add(refreshButton, BorderLayout.LINE_END);
+        JPanel actions = new JPanel();
+        actions.setBackground(UiTheme.BACKGROUND);
+        actions.add(printButton);
+        actions.add(refreshButton);
+        top.add(actions, BorderLayout.LINE_END);
         add(top, BorderLayout.NORTH);
         UiTheme.table(table);
         JScrollPane tableScroll = new JScrollPane(table);
@@ -50,6 +56,7 @@ public class InvoicePanel extends JPanel {
         UiTheme.scroll(detailsScroll);
         add(detailsScroll, BorderLayout.SOUTH);
         refreshButton.addActionListener(event -> refresh());
+        printButton.addActionListener(event -> printInvoice());
         table.getSelectionModel().addListSelectionListener(event -> showSelected());
         UiTheme.rtl(this);
         refresh();
@@ -81,5 +88,18 @@ public class InvoicePanel extends JPanel {
 
     private void showError(Exception ex) {
         JOptionPane.showMessageDialog(this, ex.getMessage(), "خطأ في الفواتير", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void printInvoice() {
+        try {
+            if (detailsArea.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "لا توجد فاتورة للطباعة.");
+                return;
+            }
+            detailsArea.print();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "تعذرت طباعة الفاتورة: " + ex.getMessage(),
+                    "خطأ في الطباعة", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Classes and Methods - Coffee Shop Management System</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            background: #ffffff;
+            color: #222222;
+        }
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+        h1, h2 {
+            color: #9b111e;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #9b111e;
+            padding-bottom: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 26px;
+        }
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            vertical-align: top;
+        }
+        th {
+            background: #f5f5f5;
+        }
+        code {
+            direction: ltr;
+            unicode-bidi: embed;
+            font-family: Consolas, monospace;
+            background: #f7f7f7;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            padding: 2px 6px;
+            display: inline-block;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Classes and Methods</h1>
+
+    <h2>Main</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>Main</code></td>
+            <td><code>main()</code></td>
+        </tr>
+    </table>
+
+    <h2>Abstract Classes</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>Person</code></td>
+            <td><code>getRoleDescription()</code>, <code>getName()</code>, <code>setName()</code></td>
+        </tr>
+    </table>
+
+    <h2>Models</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>User</code></td>
+            <td><code>getRoleDescription()</code>, <code>setPassword()</code>, <code>setRole()</code></td>
+        </tr>
+        <tr>
+            <td><code>Manager</code></td>
+            <td><code>getRoleDescription()</code></td>
+        </tr>
+        <tr>
+            <td><code>Employee</code></td>
+            <td><code>getRoleDescription()</code></td>
+        </tr>
+        <tr>
+            <td><code>Customer</code></td>
+            <td><code>getType()</code>, <code>setType()</code></td>
+        </tr>
+        <tr>
+            <td><code>VIPCustomer</code></td>
+            <td><code>calculateDiscount()</code></td>
+        </tr>
+        <tr>
+            <td><code>Category</code></td>
+            <td><code>setName()</code>, <code>toString()</code></td>
+        </tr>
+        <tr>
+            <td><code>Product</code></td>
+            <td><code>setPrice()</code>, <code>setCategory()</code>, <code>toString()</code></td>
+        </tr>
+        <tr>
+            <td><code>Order</code></td>
+            <td><code>addItem()</code>, <code>recalculate()</code>, <code>calculateTotal()</code>, <code>print()</code></td>
+        </tr>
+        <tr>
+            <td><code>Order.OrderItem</code></td>
+            <td><code>getLineTotal()</code>, <code>getQuantity()</code></td>
+        </tr>
+        <tr>
+            <td><code>Invoice</code></td>
+            <td><code>print()</code></td>
+        </tr>
+    </table>
+
+    <h2>Interfaces</h2>
+    <table>
+        <tr><th>Interface</th><th>Methods</th></tr>
+        <tr>
+            <td><code>Authenticatable</code></td>
+            <td><code>login()</code></td>
+        </tr>
+        <tr>
+            <td><code>Manageable&lt;T&gt;</code></td>
+            <td><code>add()</code>, <code>update()</code>, <code>delete()</code>, <code>getAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>Repository&lt;T&gt;</code></td>
+            <td><code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>findById()</code>, <code>findAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>Payable</code></td>
+            <td><code>calculateTotal()</code></td>
+        </tr>
+        <tr>
+            <td><code>Printable</code></td>
+            <td><code>print()</code></td>
+        </tr>
+        <tr>
+            <td><code>Discountable</code></td>
+            <td><code>calculateDiscount()</code></td>
+        </tr>
+    </table>
+
+    <h2>Services</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>AuthService</code></td>
+            <td><code>login()</code>, <code>register()</code>, <code>getSecurityQuestion()</code>, <code>resetPassword()</code></td>
+        </tr>
+        <tr>
+            <td><code>UserService</code></td>
+            <td><code>getAllUsers()</code>, <code>updateStatus()</code>, <code>updateRole()</code>, <code>changePassword()</code>, <code>changeSecurityQuestion()</code></td>
+        </tr>
+        <tr>
+            <td><code>CategoryService</code></td>
+            <td><code>add()</code>, <code>update()</code>, <code>delete()</code>, <code>getAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>ProductService</code></td>
+            <td><code>addProduct()</code>, <code>findById()</code></td>
+        </tr>
+        <tr>
+            <td><code>OrderService</code></td>
+            <td><code>startOrder()</code>, <code>addProduct()</code>, <code>completeOrder()</code>, <code>getAllOrders()</code></td>
+        </tr>
+        <tr>
+            <td><code>InvoiceService</code></td>
+            <td><code>createInvoiceText()</code></td>
+        </tr>
+        <tr>
+            <td><code>ReportService</code></td>
+            <td><code>buildSalesReport()</code></td>
+        </tr>
+    </table>
+
+    <h2>Repositories</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>UserRepository</code></td>
+            <td><code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>findById()</code>, <code>findAll()</code>, <code>findUser()</code></td>
+        </tr>
+        <tr>
+            <td><code>CategoryRepository</code></td>
+            <td><code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>findById()</code>, <code>findAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>ProductRepository</code></td>
+            <td><code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>findById()</code>, <code>findAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>CustomerRepository</code></td>
+            <td><code>save()</code>, <code>findAll()</code>, <code>findById()</code></td>
+        </tr>
+        <tr>
+            <td><code>OrderRepository</code></td>
+            <td><code>save()</code>, <code>findAll()</code>, <code>findById()</code></td>
+        </tr>
+    </table>
+
+    <h2>Database</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>DatabaseConfig</code></td>
+            <td><code>getDatabaseUrl()</code>, <code>getUsername()</code>, <code>getPassword()</code></td>
+        </tr>
+        <tr>
+            <td><code>DatabaseManager</code></td>
+            <td><code>getConnection()</code></td>
+        </tr>
+        <tr>
+            <td><code>SchemaInitializer</code></td>
+            <td><code>initialize()</code></td>
+        </tr>
+    </table>
+
+    <h2>GUI</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr><td><code>LoginFrame</code></td><td><code>initComponents()</code>, <code>handleLogin()</code></td></tr>
+        <tr><td><code>ForgotPasswordDialog</code></td><td><code>initComponents()</code>, <code>handleResetPassword()</code></td></tr>
+        <tr><td><code>MainFrame</code></td><td><code>initComponents()</code>, <code>showPanel()</code></td></tr>
+        <tr><td><code>HomePanel</code></td><td><code>loadData()</code></td></tr>
+        <tr><td><code>CategoryPanel</code></td><td><code>loadCategories()</code>, <code>addCategory()</code>, <code>updateCategory()</code>, <code>deleteCategory()</code></td></tr>
+        <tr><td><code>ProductPanel</code></td><td><code>loadProducts()</code>, <code>addProduct()</code>, <code>updateProduct()</code>, <code>deleteProduct()</code></td></tr>
+        <tr><td><code>OrderPanel</code></td><td><code>loadProducts()</code>, <code>addItem()</code>, <code>completeOrder()</code></td></tr>
+        <tr><td><code>InvoicePanel</code></td><td><code>loadOrders()</code>, <code>showOrderDetails()</code></td></tr>
+        <tr><td><code>ReportsPanel</code></td><td><code>loadReport()</code></td></tr>
+        <tr><td><code>UserManagementPanel</code></td><td><code>loadUsers()</code>, <code>updateStatus()</code>, <code>updateRole()</code></td></tr>
+        <tr><td><code>RegisterDialog</code></td><td><code>initComponents()</code>, <code>handleRegister()</code></td></tr>
+        <tr><td><code>AccountSettingsPanel</code></td><td><code>openChangePassword()</code>, <code>openChangeSecurityQuestion()</code></td></tr>
+        <tr><td><code>ChangePasswordDialog</code></td><td><code>initComponents()</code>, <code>handleChangePassword()</code></td></tr>
+        <tr><td><code>ChangeSecurityQuestionDialog</code></td><td><code>initComponents()</code>, <code>handleChangeSecurityQuestion()</code></td></tr>
+        <tr><td><code>UiTheme</code></td><td><code>apply()</code>, <code>styleButton()</code>, <code>styleTable()</code></td></tr>
+    </table>
+
+    <h2>Exceptions</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr><td><code>AuthenticationException</code></td><td><code>AuthenticationException()</code></td></tr>
+        <tr><td><code>DatabaseConnectionException</code></td><td><code>DatabaseConnectionException()</code></td></tr>
+        <tr><td><code>EntityNotFoundException</code></td><td><code>EntityNotFoundException()</code></td></tr>
+        <tr><td><code>InvalidInputException</code></td><td><code>InvalidInputException()</code></td></tr>
+        <tr><td><code>OrderProcessingException</code></td><td><code>OrderProcessingException()</code></td></tr>
+        <tr><td><code>UnauthorizedActionException</code></td><td><code>UnauthorizedActionException()</code></td></tr>
+    </table>
+
+    <h2>Utils</h2>
+    <table>
+        <tr><th>Class</th><th>Methods</th></tr>
+        <tr>
+            <td><code>ValidationUtils</code></td>
+            <td><code>requireText()</code>, <code>requirePositive()</code></td>
+        </tr>
+        <tr>
+            <td><code>AppConstants</code></td>
+            <td><code>TAX_RATE</code></td>
+        </tr>
+        <tr>
+            <td><code>SessionManager</code></td>
+            <td><code>getCurrentUser()</code>, <code>setCurrentUser()</code>, <code>logout()</code></td>
+        </tr>
+        <tr>
+            <td><code>PasswordUtils</code></td>
+            <td><code>matches()</code>, <code>hash()</code></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

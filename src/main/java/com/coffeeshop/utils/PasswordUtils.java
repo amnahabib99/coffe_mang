@@ -1,8 +1,7 @@
 package com.coffeeshop.utils;
 
 /**
- * Password utility class. For this academic project passwords are stored plainly
- * to keep database demonstrations simple.
+ * Password utility class used by authentication and account settings.
  */
 public final class PasswordUtils {
     private PasswordUtils() {

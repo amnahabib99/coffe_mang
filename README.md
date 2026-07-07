@@ -102,7 +102,7 @@ If Maven is not available as `mvn`, use the Maven executable bundled with NetBea
 - `ProductPanel`: product management and product filtering.
 - `OrderPanel`: order creation, item list, total calculation, and invoice preview.
 - `InvoicePanel`: order and invoice viewing with printing.
-- `ReportsPanel`: sales and OOP demonstration reports with printing.
+- `ReportsPanel`: sales reports based on saved orders with printing.
 - `UserManagementPanel`: manager-only user verification and account management.
 - `RegisterDialog`: account creation from user management.
 - `AccountSettingsPanel`: password and security question settings.
@@ -116,7 +116,7 @@ If Maven is not available as `mvn`, use the Maven executable bundled with NetBea
 - Inheritance: `User` extends `Person`; `Manager` and `Employee` extend `User`; `Customer` extends `Person`; `VIPCustomer` extends `Customer`.
 - Interfaces: `Authenticatable`, `Manageable<T>`, `Repository<T>`, `Printable`, `Payable`, and `Discountable`.
 - Implements: `AuthService` implements `Authenticatable`; `CategoryService` and `ProductService` implement `Manageable<T>`; repositories implement `Repository<T>`; `Order` implements `Payable` and `Printable`; `VIPCustomer` implements `Discountable`.
-- Polymorphism: reports handle `Manager`, `Employee`, `Customer`, and `VIPCustomer` through `Person` references; order totals are calculated through `Payable`.
+- Polymorphism: repositories and services handle `Manager` and `Employee` through `User` references; order totals are calculated through the `Payable` interface.
 - Method Overriding: `getRoleDescription()` is overridden in person subclasses; `toString()` is overridden in models; discount behavior is overridden in VIP customer logic.
 - Method Overloading: overloaded service and repository methods include product creation and user lookup variations.
 - Constructor Overloading: constructors appear in `User`, `Product`, `Order`, and `Customer`.

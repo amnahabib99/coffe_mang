@@ -5,7 +5,7 @@ import com.coffeeshop.exceptions.InvalidInputException;
 import com.coffeeshop.interfaces.Discountable;
 
 /**
- * VIP customer implementation used to demonstrate interface polymorphism.
+ * VIP customer that receives a discount when linked to an order.
  */
 public class VIPCustomer extends Customer implements Discountable {
     /**

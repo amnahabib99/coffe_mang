@@ -1,33 +1,57 @@
 package com.coffeeshop.services;
 
-import com.coffeeshop.abstracts.Person;
-import com.coffeeshop.enums.UserStatus;
-import com.coffeeshop.models.Employee;
-import com.coffeeshop.models.Manager;
-import com.coffeeshop.models.VIPCustomer;
+import com.coffeeshop.models.Order;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Builds reports, including a visible OOP polymorphism report.
+ * Builds operational reports from saved coffee shop orders.
  */
 public class ReportService {
     /**
-     * Demonstrates polymorphism by storing subclasses as Person references.
+     * Builds a sales summary from completed orders saved in the database.
      *
-     * @return report text
-     * @throws Exception when model creation fails
+     * @param orders completed orders
+     * @return formatted sales report
      */
-    public String buildOopDemoReport() throws Exception {
-        List<Person> people = new ArrayList<>();
-        people.add(new Manager(1, "سارة", "sara", "x", "111", "س", "ج", UserStatus.ACTIVE));
-        people.add(new Employee(2, "عمر", "omar", "x", "222", "س", "ج", UserStatus.ACTIVE));
-        people.add(new VIPCustomer(3, "لينا", "333"));
-        StringBuilder builder = new StringBuilder("تقرير توضيحي لتعدد الأشكال في البرمجة الكائنية\n");
-        for (Person person : people) {
-            builder.append(person.getName()).append(" -> ").append(person.getRoleDescription()).append('\n');
+    public String buildSalesReport(List<Order> orders) {
+        int count = 0;
+        double subtotal = 0;
+        double tax = 0;
+        double discount = 0;
+        double total = 0;
+
+        for (Order order : orders) {
+            count++;
+            subtotal += order.getSubtotal();
+            tax += order.getTax();
+            discount += order.getDiscount();
+            total += order.getTotal();
         }
+
+        double average = count == 0 ? 0 : total / count;
+        StringBuilder builder = new StringBuilder();
+        builder.append("تقرير المبيعات").append(System.lineSeparator());
+        builder.append("----------------").append(System.lineSeparator());
+        builder.append("عدد الطلبات المكتملة: ").append(count).append(System.lineSeparator());
+        builder.append("إجمالي المبيعات قبل الضريبة: ").append(String.format("%.2f", subtotal)).append(System.lineSeparator());
+        builder.append("إجمالي الضريبة: ").append(String.format("%.2f", tax)).append(System.lineSeparator());
+        builder.append("إجمالي الخصومات: ").append(String.format("%.2f", discount)).append(System.lineSeparator());
+        builder.append("إجمالي المبيعات النهائي: ").append(String.format("%.2f", total)).append(System.lineSeparator());
+        builder.append("متوسط قيمة الطلب: ").append(String.format("%.2f", average)).append(System.lineSeparator());
+
+        if (!orders.isEmpty()) {
+            builder.append(System.lineSeparator()).append("تفاصيل الطلبات").append(System.lineSeparator());
+            builder.append("----------------").append(System.lineSeparator());
+            for (Order order : orders) {
+                builder.append("طلب رقم ").append(order.getId())
+                        .append(" | التاريخ: ").append(order.getCreatedAt())
+                        .append(" | الموظف: ").append(order.getCashier() == null ? "غير محدد" : order.getCashier().getName())
+                        .append(" | الإجمالي: ").append(String.format("%.2f", order.getTotal()))
+                        .append(System.lineSeparator());
+            }
+        }
+
         return builder.toString();
     }
 }

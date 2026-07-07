@@ -37,9 +37,9 @@ public abstract class Person {
     }
 
     /**
-     * Returns the readable role text used in reports and polymorphism demonstrations.
+     * Returns the readable role text used by subclasses.
      *
-     * @return role description used for polymorphism demonstration
+     * @return role description
      */
     public abstract String getRoleDescription();
 

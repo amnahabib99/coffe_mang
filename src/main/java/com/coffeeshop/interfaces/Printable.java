@@ -5,6 +5,8 @@ package com.coffeeshop.interfaces;
  */
 public interface Printable {
     /**
+     * Builds text that can be displayed or sent to the print dialog.
+     *
      * @return printable representation
      */
     String print();

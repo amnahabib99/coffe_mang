@@ -42,6 +42,14 @@ public class AuthService implements Authenticatable {
     /**
      * Registers a new user.
      *
+     * @param name full user name
+     * @param username unique login username
+     * @param password login password
+     * @param phone user phone number
+     * @param role selected user role
+     * @param question security question
+     * @param answer security answer
+     * @param status initial account status
      * @return saved user
      * @throws Exception when validation or database save fails
      */
@@ -73,6 +81,9 @@ public class AuthService implements Authenticatable {
     /**
      * Resets password using the security answer.
      *
+     * @param username account username
+     * @param answer entered security answer
+     * @param newPassword replacement password
      * @throws Exception when answer is wrong
      */
     public void resetPassword(String username, String answer, String newPassword) throws Exception {

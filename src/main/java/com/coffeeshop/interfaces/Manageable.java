@@ -33,6 +33,8 @@ public interface Manageable<T> {
     void delete(int id) throws Exception;
 
     /**
+     * Loads every manageable entity.
+     *
      * @return all entities
      * @throws Exception when loading fails
      */

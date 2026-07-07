@@ -27,22 +27,24 @@ import java.awt.Insets;
 import java.awt.Container;
 
 /**
- * Shared Swing styling helpers for a cleaner, consistent cafe interface.
+ * Provides shared Swing styling helpers for the Arabic right-to-left cafe interface.
+ * Panels use a white surface, red identity color, green save buttons, and cyan
+ * refresh actions.
  */
 public final class UiTheme {
-    /** Warm page background. */
+    /** Main page background. */
     public static final Color BACKGROUND = Color.WHITE;
     /** Panel surface color. */
     public static final Color SURFACE = Color.WHITE;
-    /** Primary coffee accent. */
+    /** Primary visual identity color. */
     public static final Color PRIMARY = new Color(178, 34, 34);
-    /** Secondary teal accent. */
+    /** Secondary action color aligned with the red identity. */
     public static final Color ACCENT = new Color(178, 34, 34);
     /** Text color. */
     public static final Color TEXT = new Color(178, 34, 34);
-    /** Muted border color. */
+    /** Border color used around forms, cards, and tables. */
     public static final Color BORDER = new Color(178, 34, 34);
-    /** Soft danger color. */
+    /** Destructive action color. */
     public static final Color DANGER = new Color(178, 34, 34);
     /** Green used for save and confirmation buttons only. */
     public static final Color SAVE = new Color(34, 139, 34);

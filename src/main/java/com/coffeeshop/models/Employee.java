@@ -11,6 +11,14 @@ public class Employee extends User {
     /**
      * Creates an employee.
      *
+     * @param id employee id
+     * @param name employee name
+     * @param username login username
+     * @param password login password
+     * @param phone phone number
+     * @param securityQuestion password recovery question
+     * @param securityAnswer password recovery answer
+     * @param status account status
      * @throws InvalidInputException when required data is invalid
      */
     public Employee(int id, String name, String username, String password, String phone,

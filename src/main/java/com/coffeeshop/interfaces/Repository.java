@@ -44,6 +44,8 @@ public interface Repository<T> {
     Optional<T> findById(int id) throws Exception;
 
     /**
+     * Loads every entity of this repository type.
+     *
      * @return all entities
      * @throws Exception when loading fails
      */

@@ -7,7 +7,9 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 /**
- * Central MySQL connection configuration.
+ * Stores the MySQL connection settings used by the coffee shop application.
+ * The password can be supplied through a JVM property, an environment variable,
+ * or the local ignored file {@code .local-db.properties}.
  */
 public final class DatabaseConfig {
     /** MySQL host. */
@@ -19,8 +21,7 @@ public final class DatabaseConfig {
     /** MySQL username. */
     public static final String USERNAME = "root";
     /**
-     * MySQL password. Prefer setting it locally with the COFFEE_DB_PASSWORD
-     * environment variable so real passwords are not committed to GitHub.
+     * MySQL password resolved at startup without committing private credentials.
      */
     public static final String PASSWORD = getPassword();
     /** Server URL used to create the database if needed. */
@@ -33,6 +34,11 @@ public final class DatabaseConfig {
     private DatabaseConfig() {
     }
 
+    /**
+     * Resolves the database password from supported local configuration sources.
+     *
+     * @return the configured MySQL password, or an empty string when no password is configured
+     */
     private static String getPassword() {
         String fromProperty = System.getProperty("coffee.db.password");
         if (fromProperty != null && !fromProperty.isBlank()) {
@@ -45,6 +51,11 @@ public final class DatabaseConfig {
         return readLocalPassword();
     }
 
+    /**
+     * Reads the optional ignored local database configuration file.
+     *
+     * @return password from {@code .local-db.properties}, or an empty string when unavailable
+     */
     private static String readLocalPassword() {
         Path localFile = Path.of(".local-db.properties");
         if (!Files.exists(localFile)) {

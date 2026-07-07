@@ -11,6 +11,14 @@ public class Manager extends User {
     /**
      * Creates a manager.
      *
+     * @param id manager id
+     * @param name manager name
+     * @param username login username
+     * @param password login password
+     * @param phone phone number
+     * @param securityQuestion password recovery question
+     * @param securityAnswer password recovery answer
+     * @param status account status
      * @throws InvalidInputException when required data is invalid
      */
     public Manager(int id, String name, String username, String password, String phone,

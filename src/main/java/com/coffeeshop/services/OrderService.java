@@ -36,6 +36,9 @@ public class OrderService {
     /**
      * Adds product to order with validation.
      *
+     * @param order active order
+     * @param product selected product
+     * @param quantity requested quantity
      * @throws OrderProcessingException when product or quantity is invalid
      */
     public void addProduct(Order order, Product product, int quantity) throws OrderProcessingException {
@@ -72,6 +75,8 @@ public class OrderService {
     }
 
     /**
+     * Loads completed orders for invoice and report screens.
+     *
      * @return all completed orders
      * @throws Exception when loading fails
      */

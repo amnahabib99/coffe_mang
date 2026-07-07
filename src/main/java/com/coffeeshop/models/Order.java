@@ -142,95 +142,210 @@ public class Order implements Payable, Printable {
             this.lineTotal = quantity * unitPrice;
         }
 
+        /**
+         * Returns the database id of this order item.
+         *
+         * @return order item id
+         */
         public int getId() {
             return id;
         }
 
+        /**
+         * Updates the database id after saving or loading the item.
+         *
+         * @param id order item id
+         */
         public void setId(int id) {
             this.id = id;
         }
 
+        /**
+         * Returns the referenced product id.
+         *
+         * @return product id
+         */
         public int getProductId() {
             return productId;
         }
 
+        /**
+         * Returns the product name snapshot stored on the invoice.
+         *
+         * @return product name
+         */
         public String getProductName() {
             return productName;
         }
 
+        /**
+         * Returns the quantity sold.
+         *
+         * @return quantity
+         */
         public int getQuantity() {
             return quantity;
         }
 
+        /**
+         * Returns the product unit price at sale time.
+         *
+         * @return unit price
+         */
         public double getUnitPrice() {
             return unitPrice;
         }
 
+        /**
+         * Returns quantity multiplied by unit price.
+         *
+         * @return line total
+         */
         public double getLineTotal() {
             return lineTotal;
         }
     }
 
+    /**
+     * Returns the order id.
+     *
+     * @return order id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Updates the order id after saving or loading.
+     *
+     * @param id order id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Returns the customer linked to this order.
+     *
+     * @return customer, or null for walk-in orders
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     * Assigns an optional customer to the order.
+     *
+     * @param customer customer, or null for walk-in orders
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    /**
+     * Returns the user who completed the order.
+     *
+     * @return cashier user
+     */
     public User getCashier() {
         return cashier;
     }
 
+    /**
+     * Returns the order items as a read-only list.
+     *
+     * @return order items
+     */
     public List<OrderItem> getItems() {
         return Collections.unmodifiableList(items);
     }
 
+    /**
+     * Returns the subtotal before tax and discount.
+     *
+     * @return subtotal
+     */
     public double getSubtotal() {
         return subtotal;
     }
 
+    /**
+     * Updates the subtotal loaded from the database.
+     *
+     * @param subtotal subtotal amount
+     */
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
+    /**
+     * Returns the calculated tax amount.
+     *
+     * @return tax amount
+     */
     public double getTax() {
         return tax;
     }
 
+    /**
+     * Updates the tax amount loaded from the database.
+     *
+     * @param tax tax amount
+     */
     public void setTax(double tax) {
         this.tax = tax;
     }
 
+    /**
+     * Returns the discount applied to the order.
+     *
+     * @return discount amount
+     */
     public double getDiscount() {
         return discount;
     }
 
+    /**
+     * Updates the discount amount.
+     *
+     * @param discount discount amount
+     */
     public void setDiscount(double discount) {
         this.discount = discount;
     }
 
+    /**
+     * Returns the final order total.
+     *
+     * @return final total
+     */
     public double getTotal() {
         return total;
     }
 
+    /**
+     * Updates the final total loaded from the database.
+     *
+     * @param total final total
+     */
     public void setTotal(double total) {
         this.total = total;
     }
 
+    /**
+     * Returns the order status.
+     *
+     * @return order status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Returns the order creation date and time.
+     *
+     * @return creation timestamp
+     */
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

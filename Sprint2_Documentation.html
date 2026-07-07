@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تقرير Sprint 2 - Coffee Shop Management System</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background: #ffffff;
+            color: #222222;
+        }
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        h1, h2, h3 {
+            color: #9b111e;
+            margin-top: 28px;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #9b111e;
+            padding-bottom: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            vertical-align: top;
+        }
+        th {
+            background: #f5f5f5;
+            color: #111111;
+        }
+        code, pre {
+            direction: ltr;
+            text-align: left;
+            background: #f7f7f7;
+            border: 1px solid #dddddd;
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            padding: 12px;
+            overflow-x: auto;
+        }
+        .note {
+            border-right: 4px solid #9b111e;
+            background: #fff7f7;
+            padding: 12px;
+            margin: 16px 0;
+        }
+        .small {
+            color: #555555;
+            font-size: 14px;
+        }
+        ul {
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>تقرير Sprint 2 - Coffee Shop Management System</h1>
+
+    <p>
+        هذا ملف HTML واحد فقط يحتوي شرح المشروع ومتطلبات Sprint 2 بطريقة مبسطة.
+        أسماء الكلاسات والدوال مكتوبة كما هي في الكود، أما الشرح فهو باللغة العربية لتسهيل المذاكرة والمناقشة.
+    </p>
+
+    <div class="note">
+        <strong>مهم:</strong>
+        هذا الملف خاص للمذاكرة والشرح. ملف Javadoc الرسمي في Maven ينتج ملفات HTML كثيرة بشكل طبيعي،
+        لكن هذا الملف هو نسخة مبسطة في صفحة واحدة فقط.
+    </div>
+
+    <h2>1. معلومات المشروع</h2>
+    <table>
+        <tr><th>العنصر</th><th>القيمة</th></tr>
+        <tr><td>اسم المشروع</td><td><code>Coffee Shop Management System</code></td></tr>
+        <tr><td>نوع المشروع</td><td>تطبيق سطح مكتب لإدارة مقهى</td></tr>
+        <tr><td>لغة البرمجة</td><td><code>Java</code></td></tr>
+        <tr><td>نظام البناء</td><td><code>Maven</code></td></tr>
+        <tr><td>واجهة المستخدم</td><td><code>Swing GUI</code></td></tr>
+        <tr><td>قاعدة البيانات</td><td><code>MySQL</code></td></tr>
+        <tr><td>الاتصال بقاعدة البيانات</td><td><code>JDBC</code></td></tr>
+        <tr><td>الحزمة الرئيسية</td><td><code>com.coffeeshop</code></td></tr>
+        <tr><td>كلاس التشغيل</td><td><code>com.coffeeshop.Main</code></td></tr>
+    </table>
+
+    <h2>2. فكرة النظام</h2>
+    <p>
+        النظام يدير عمليات مقهى بشكل عملي: تسجيل الدخول، إنشاء حسابات، استرجاع كلمة المرور،
+        تغيير كلمة المرور وسؤال الأمان، إدارة التصنيفات والمنتجات، إنشاء الطلبات، حفظ الفواتير،
+        عرض تفاصيل الطلبات، إدارة المستخدمين، وإصدار تقارير مبيعات حقيقية من قاعدة البيانات.
+    </p>
+
+    <h2>3. متطلبات Sprint 2 وكيف تحققت</h2>
+    <table>
+        <tr><th>المتطلب</th><th>كيف تحقق في المشروع</th></tr>
+        <tr>
+            <td>Version Control</td>
+            <td>تم استخدام <code>Git</code> ورفع المشروع إلى GitHub.</td>
+        </tr>
+        <tr>
+            <td>At least 7 classes</td>
+            <td>المشروع يحتوي أكثر من 60 ملف Java.</td>
+        </tr>
+        <tr>
+            <td>Encapsulation</td>
+            <td>الحقول في الموديلات private وتوجد constructors و getters/setters.</td>
+        </tr>
+        <tr>
+            <td>Inheritance</td>
+            <td><code>User extends Person</code>، <code>Manager extends User</code>، <code>Employee extends User</code>، <code>Customer extends Person</code>، <code>VIPCustomer extends Customer</code>.</td>
+        </tr>
+        <tr>
+            <td>Polymorphism</td>
+            <td>التعامل مع <code>Manager</code> و <code>Employee</code> كـ <code>User</code>، واستخدام <code>Payable payable = order</code>.</td>
+        </tr>
+        <tr>
+            <td>Abstract Class</td>
+            <td><code>Person</code> يحتوي الحقول المشتركة والدالة abstract <code>getRoleDescription()</code>.</td>
+        </tr>
+        <tr>
+            <td>Interfaces</td>
+            <td><code>Authenticatable</code>، <code>Manageable</code>، <code>Repository</code>، <code>Payable</code>، <code>Printable</code>، <code>Discountable</code>.</td>
+        </tr>
+        <tr>
+            <td>Method Overriding</td>
+            <td>مثل <code>getRoleDescription()</code> و <code>print()</code> و <code>calculateTotal()</code> و <code>calculateDiscount()</code>.</td>
+        </tr>
+        <tr>
+            <td>Exception Handling</td>
+            <td>استخدام custom exceptions و <code>try/catch</code> في الواجهات والخدمات والمستودعات.</td>
+        </tr>
+        <tr>
+            <td>Javadoc</td>
+            <td>التوثيق موجود داخل ملفات Java ويمكن توليده بالأمر <code>mvn javadoc:javadoc</code>.</td>
+        </tr>
+        <tr>
+            <td>Database Schema</td>
+            <td>قاعدة MySQL باسم <code>coffee_shop_db</code> وجداول users, categories, products, customers, orders, order_items.</td>
+        </tr>
+        <tr>
+            <td>GUI Foundation</td>
+            <td>واجهات Swing: Login, Main, Products, Categories, Orders, Invoices, Reports, User Management, Account Settings.</td>
+        </tr>
+        <tr>
+            <td>Database Connection Integration</td>
+            <td>الاتصال يتم عبر <code>DatabaseConfig</code> و <code>DatabaseManager</code> و repositories.</td>
+        </tr>
+        <tr>
+            <td>Running System</td>
+            <td>المشروع يترجم ويعمل باستخدام Maven.</td>
+        </tr>
+    </table>
+
+    <h2>4. بنية المجلدات</h2>
+    <table>
+        <tr><th>المجلد</th><th>ماذا يحتوي</th></tr>
+        <tr><td><code>src/main/java/com/coffeeshop</code></td><td>الكلاس الرئيسي <code>Main</code>.</td></tr>
+        <tr><td><code>abstracts</code></td><td>الكلاس abstract <code>Person</code>.</td></tr>
+        <tr><td><code>models</code></td><td>الكلاسات التي تمثل بيانات النظام مثل User, Product, Order.</td></tr>
+        <tr><td><code>interfaces</code></td><td>العقود البرمجية التي تطبقها الخدمات والموديلات.</td></tr>
+        <tr><td><code>enums</code></td><td>قيم ثابتة مثل UserRole و ProductStatus.</td></tr>
+        <tr><td><code>exceptions</code></td><td>الأخطاء المخصصة.</td></tr>
+        <tr><td><code>database</code></td><td>إعدادات الاتصال وإنشاء قاعدة البيانات والجداول.</td></tr>
+        <tr><td><code>repositories</code></td><td>عمليات SQL وقاعدة البيانات.</td></tr>
+        <tr><td><code>services</code></td><td>منطق النظام والعمليات الأساسية.</td></tr>
+        <tr><td><code>gui</code></td><td>واجهات Swing.</td></tr>
+        <tr><td><code>utils</code></td><td>أدوات مساعدة وثوابت وجلسة المستخدم.</td></tr>
+        <tr><td><code>src/main/resources</code></td><td>ملف <code>schema.sql</code>.</td></tr>
+    </table>
+
+    <h2>5. قاعدة البيانات</h2>
+    <p>
+        قاعدة البيانات المستخدمة هي:
+    </p>
+    <pre>coffee_shop_db</pre>
+
+    <h3>الجداول</h3>
+    <table>
+        <tr><th>الجدول</th><th>الوصف</th></tr>
+        <tr><td><code>users</code></td><td>تخزين المستخدمين، الدور، الحالة، وسؤال الأمان.</td></tr>
+        <tr><td><code>categories</code></td><td>تخزين تصنيفات المنتجات.</td></tr>
+        <tr><td><code>products</code></td><td>تخزين المنتجات المرتبطة بالتصنيفات.</td></tr>
+        <tr><td><code>customers</code></td><td>تخزين العملاء ونوع العميل.</td></tr>
+        <tr><td><code>orders</code></td><td>تخزين الطلبات المكتملة والإجماليات.</td></tr>
+        <tr><td><code>order_items</code></td><td>تخزين تفاصيل المنتجات داخل كل طلب.</td></tr>
+    </table>
+
+    <h3>كلاسات قاعدة البيانات</h3>
+    <table>
+        <tr><th>الكلاس</th><th>المسار</th><th>الوصف</th></tr>
+        <tr>
+            <td><code>DatabaseConfig</code></td>
+            <td><code>src/main/java/com/coffeeshop/database/DatabaseConfig.java</code></td>
+            <td>يحتوي إعدادات الاتصال مثل host, port, database, username, password.</td>
+        </tr>
+        <tr>
+            <td><code>DatabaseManager</code></td>
+            <td><code>src/main/java/com/coffeeshop/database/DatabaseManager.java</code></td>
+            <td>يفتح اتصال JDBC مع MySQL.</td>
+        </tr>
+        <tr>
+            <td><code>SchemaInitializer</code></td>
+            <td><code>src/main/java/com/coffeeshop/database/SchemaInitializer.java</code></td>
+            <td>ينشئ قاعدة البيانات والجداول والبيانات الأولية عند أول تشغيل.</td>
+        </tr>
+    </table>
+
+    <h2>6. الكلاسات الأساسية Models</h2>
+    <table>
+        <tr><th>الكلاس</th><th>الوصف بالعربي</th><th>دوال مهمة</th></tr>
+        <tr>
+            <td><code>Person</code></td>
+            <td>كلاس abstract يمثل البيانات المشتركة بين الأشخاص.</td>
+            <td><code>getRoleDescription()</code>, <code>getName()</code>, <code>setName()</code></td>
+        </tr>
+        <tr>
+            <td><code>User</code></td>
+            <td>يمثل مستخدم النظام ويحتوي username و password و role و status.</td>
+            <td><code>getRoleDescription()</code>, <code>setPassword()</code>, <code>setRole()</code></td>
+        </tr>
+        <tr>
+            <td><code>Manager</code></td>
+            <td>يمثل المدير وصلاحياته أكبر من الموظف.</td>
+            <td><code>getRoleDescription()</code></td>
+        </tr>
+        <tr>
+            <td><code>Employee</code></td>
+            <td>يمثل الموظف المسؤول عن الطلبات والفواتير.</td>
+            <td><code>getRoleDescription()</code></td>
+        </tr>
+        <tr>
+            <td><code>Customer</code></td>
+            <td>يمثل العميل المرتبط بالطلب.</td>
+            <td><code>getType()</code>, <code>setType()</code></td>
+        </tr>
+        <tr>
+            <td><code>VIPCustomer</code></td>
+            <td>عميل مميز يحصل على خصم.</td>
+            <td><code>calculateDiscount()</code></td>
+        </tr>
+        <tr>
+            <td><code>Category</code></td>
+            <td>يمثل تصنيف المنتج مثل قهوة أو شاي.</td>
+            <td><code>setName()</code>, <code>toString()</code></td>
+        </tr>
+        <tr>
+            <td><code>Product</code></td>
+            <td>يمثل منتج يباع في المقهى.</td>
+            <td><code>setPrice()</code>, <code>setCategory()</code>, <code>toString()</code></td>
+        </tr>
+        <tr>
+            <td><code>Order</code></td>
+            <td>يمثل طلبا مكتمل البيع ويحسب الضريبة والخصم والإجمالي.</td>
+            <td><code>addItem()</code>, <code>recalculate()</code>, <code>calculateTotal()</code>, <code>print()</code></td>
+        </tr>
+        <tr>
+            <td><code>Order.OrderItem</code></td>
+            <td>inner class يمثل سطر منتج داخل الطلب.</td>
+            <td><code>getLineTotal()</code>, <code>getQuantity()</code></td>
+        </tr>
+        <tr>
+            <td><code>Invoice</code></td>
+            <td>يمثل فاتورة قابلة للطباعة.</td>
+            <td><code>print()</code></td>
+        </tr>
+    </table>
+
+    <h2>7. الواجهات Interfaces</h2>
+    <table>
+        <tr><th>Interface</th><th>الدوال</th><th>من يطبقها</th></tr>
+        <tr><td><code>Authenticatable</code></td><td><code>login()</code></td><td><code>AuthService</code></td></tr>
+        <tr><td><code>Manageable&lt;T&gt;</code></td><td><code>add()</code>, <code>update()</code>, <code>delete()</code>, <code>getAll()</code></td><td><code>CategoryService</code>, <code>ProductService</code></td></tr>
+        <tr><td><code>Repository&lt;T&gt;</code></td><td><code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>findById()</code>, <code>findAll()</code></td><td>Repositories</td></tr>
+        <tr><td><code>Payable</code></td><td><code>calculateTotal()</code></td><td><code>Order</code></td></tr>
+        <tr><td><code>Printable</code></td><td><code>print()</code></td><td><code>Order</code>, <code>Invoice</code></td></tr>
+        <tr><td><code>Discountable</code></td><td><code>calculateDiscount()</code></td><td><code>VIPCustomer</code></td></tr>
+    </table>
+
+    <h2>8. الخدمات Services</h2>
+    <table>
+        <tr><th>Service</th><th>الوصف</th><th>دوال مهمة</th></tr>
+        <tr>
+            <td><code>AuthService</code></td>
+            <td>تسجيل الدخول، التسجيل، استرجاع كلمة المرور.</td>
+            <td><code>login()</code>, <code>register()</code>, <code>getSecurityQuestion()</code>, <code>resetPassword()</code></td>
+        </tr>
+        <tr>
+            <td><code>UserService</code></td>
+            <td>إدارة المستخدمين وتغيير كلمة المرور وسؤال الأمان.</td>
+            <td><code>getAllUsers()</code>, <code>updateStatus()</code>, <code>updateRole()</code>, <code>changePassword()</code>, <code>changeSecurityQuestion()</code></td>
+        </tr>
+        <tr>
+            <td><code>CategoryService</code></td>
+            <td>منطق إدارة التصنيفات.</td>
+            <td><code>add()</code>, <code>update()</code>, <code>delete()</code>, <code>getAll()</code></td>
+        </tr>
+        <tr>
+            <td><code>ProductService</code></td>
+            <td>منطق إدارة المنتجات.</td>
+            <td><code>addProduct()</code>, <code>findById()</code></td>
+        </tr>
+        <tr>
+            <td><code>OrderService</code></td>
+            <td>بدء الطلب، إضافة منتجات، إكمال الطلب وحفظه.</td>
+            <td><code>startOrder()</code>, <code>addProduct()</code>, <code>completeOrder()</code>, <code>getAllOrders()</code></td>
+        </tr>
+        <tr>
+            <td><code>InvoiceService</code></td>
+            <td>إنشاء نص الفاتورة.</td>
+            <td><code>createInvoiceText()</code></td>
+        </tr>
+        <tr>
+            <td><code>ReportService</code></td>
+            <td>إنشاء تقرير مبيعات حقيقي من الطلبات المحفوظة.</td>
+            <td><code>buildSalesReport()</code></td>
+        </tr>
+    </table>
+
+    <h2>9. المستودعات Repositories</h2>
+    <table>
+        <tr><th>Repository</th><th>الجدول</th><th>الوصف</th></tr>
+        <tr><td><code>UserRepository</code></td><td><code>users</code></td><td>حفظ وتعديل وحذف وبحث المستخدمين.</td></tr>
+        <tr><td><code>CategoryRepository</code></td><td><code>categories</code></td><td>إدارة التصنيفات في قاعدة البيانات.</td></tr>
+        <tr><td><code>ProductRepository</code></td><td><code>products</code></td><td>إدارة المنتجات والبحث حسب التصنيف.</td></tr>
+        <tr><td><code>CustomerRepository</code></td><td><code>customers</code></td><td>حفظ وقراءة العملاء.</td></tr>
+        <tr><td><code>OrderRepository</code></td><td><code>orders</code>, <code>order_items</code></td><td>حفظ الطلبات وتفاصيلها وقراءة الفواتير.</td></tr>
+    </table>
+
+    <h2>10. الواجهات الرسومية GUI</h2>
+    <table>
+        <tr><th>Screen / Panel</th><th>الوصف</th></tr>
+        <tr><td><code>LoginFrame</code></td><td>شاشة تسجيل الدخول الأولى.</td></tr>
+        <tr><td><code>ForgotPasswordDialog</code></td><td>استرجاع كلمة المرور بسؤال الأمان.</td></tr>
+        <tr><td><code>MainFrame</code></td><td>النافذة الرئيسية وبها sidebar للتنقل.</td></tr>
+        <tr><td><code>HomePanel</code></td><td>الصفحة الرئيسية بعد الدخول.</td></tr>
+        <tr><td><code>CategoryPanel</code></td><td>إضافة وتعديل وحذف التصنيفات.</td></tr>
+        <tr><td><code>ProductPanel</code></td><td>إضافة وتعديل وحذف المنتجات.</td></tr>
+        <tr><td><code>OrderPanel</code></td><td>إنشاء الطلب، إضافة المنتجات، حساب الإجمالي، حفظ الطلب.</td></tr>
+        <tr><td><code>InvoicePanel</code></td><td>عرض الفواتير وتفاصيل الطلبات والطباعة.</td></tr>
+        <tr><td><code>ReportsPanel</code></td><td>تقرير مبيعات حقيقي من قاعدة البيانات.</td></tr>
+        <tr><td><code>UserManagementPanel</code></td><td>إدارة المستخدمين والتفعيل وتغيير الدور.</td></tr>
+        <tr><td><code>RegisterDialog</code></td><td>إنشاء حساب مستخدم جديد من إدارة المستخدمين.</td></tr>
+        <tr><td><code>AccountSettingsPanel</code></td><td>إعدادات الحساب.</td></tr>
+        <tr><td><code>ChangePasswordDialog</code></td><td>تغيير كلمة المرور.</td></tr>
+        <tr><td><code>ChangeSecurityQuestionDialog</code></td><td>تغيير سؤال الأمان.</td></tr>
+        <tr><td><code>UiTheme</code></td><td>تنسيق الألوان، الخط، RTL، الجداول، الأزرار.</td></tr>
+    </table>
+
+    <h2>11. مفاهيم OOP بالتفصيل</h2>
+
+    <h3>Encapsulation</h3>
+    <p>
+        كل الحقول المهمة داخل الموديلات private، ويتم الوصول لها من خلال getters و setters.
+    </p>
+    <pre>private String name;
+public String getName()
+public void setName(String name)</pre>
+
+    <h3>Abstraction</h3>
+    <p>
+        موجود في <code>Person</code> لأنه abstract class يحتوي بيانات مشتركة ودالة abstract.
+    </p>
+    <pre>public abstract class Person
+public abstract String getRoleDescription();</pre>
+
+    <h3>Inheritance</h3>
+    <pre>User extends Person
+Manager extends User
+Employee extends User
+Customer extends Person
+VIPCustomer extends Customer</pre>
+
+    <h3>Interfaces and Implements</h3>
+    <pre>AuthService implements Authenticatable
+CategoryService implements Manageable&lt;Category&gt;
+ProductService implements Manageable&lt;Product&gt;
+Order implements Payable, Printable
+Invoice implements Printable
+VIPCustomer implements Discountable</pre>
+
+    <h3>Polymorphism</h3>
+    <p>
+        يظهر عندما يتعامل الكود مع subclass من خلال superclass أو interface.
+    </p>
+    <pre>User user = new Manager(...);
+User user = new Employee(...);
+Payable payable = order;
+payable.calculateTotal();</pre>
+
+    <h3>Method Overriding</h3>
+    <pre>Manager.getRoleDescription()
+Employee.getRoleDescription()
+Customer.getRoleDescription()
+VIPCustomer.calculateDiscount()
+Order.calculateTotal()
+Order.print()
+Invoice.print()</pre>
+
+    <h3>Method Overloading</h3>
+    <pre>ProductService.addProduct(String name, Category category, double price, String size)
+ProductService.addProduct(Product product)
+UserRepository.findUser(int id)
+UserRepository.findUser(String username)</pre>
+
+    <h3>Constructor Overloading</h3>
+    <pre>Product(String name, Category category, double price)
+Product(int id, String name, Category category, double price, String size, ProductStatus status)
+Order(User cashier)
+Order(int id, Customer customer, User cashier, LocalDateTime createdAt)</pre>
+
+    <h3>Static</h3>
+    <pre>AppConstants.TAX_RATE
+DatabaseConfig.DATABASE_URL
+ValidationUtils.requireText()
+SessionManager.getCurrentUser()
+PasswordUtils.matches()</pre>
+
+    <h3>Inner Class</h3>
+    <p>
+        موجود داخل <code>Order</code>:
+    </p>
+    <pre>public class Order {
+    public class OrderItem {
+        ...
+    }
+}</pre>
+
+    <h2>12. Exception Handling</h2>
+    <table>
+        <tr><th>Exception</th><th>الوصف</th></tr>
+        <tr><td><code>AuthenticationException</code></td><td>خطأ تسجيل دخول أو استرجاع كلمة مرور.</td></tr>
+        <tr><td><code>DatabaseConnectionException</code></td><td>فشل الاتصال بـ MySQL.</td></tr>
+        <tr><td><code>EntityNotFoundException</code></td><td>العنصر المطلوب غير موجود.</td></tr>
+        <tr><td><code>InvalidInputException</code></td><td>بيانات إدخال غير صحيحة.</td></tr>
+        <tr><td><code>OrderProcessingException</code></td><td>خطأ أثناء إنشاء أو حفظ الطلب.</td></tr>
+        <tr><td><code>UnauthorizedActionException</code></td><td>إجراء غير مسموح.</td></tr>
+    </table>
+    <p>
+        في الواجهة يتم عرض الأخطاء للمستخدم عن طريق:
+    </p>
+    <pre>JOptionPane.showMessageDialog(...)</pre>
+
+    <h2>13. أوامر التشغيل</h2>
+    <pre>cd C:\Users\h\OneDrive\Desktop\javaprojects\coffee_mang
+mvn clean compile
+mvn exec:java</pre>
+
+    <p>إذا لم يعمل <code>mvn</code> مباشرة:</p>
+    <pre>& "C:\Program Files\Apache NetBeans\java\maven\bin\mvn.cmd" clean compile
+& "C:\Program Files\Apache NetBeans\java\maven\bin\mvn.cmd" exec:java</pre>
+
+    <h2>14. أوامر Javadoc</h2>
+    <pre>mvn javadoc:javadoc</pre>
+    <p>أو:</p>
+    <pre>& "C:\Program Files\Apache NetBeans\java\maven\bin\mvn.cmd" javadoc:javadoc</pre>
+    <p>المكان الناتج:</p>
+    <pre>target/site/apidocs/index.html</pre>
+    <p>
+        ملاحظة: Javadoc الرسمي ينتج ملفات كثيرة وهذا طبيعي لأنه يوثق كل package و class و method.
+        هذا الملف الحالي هو صفحة واحدة مبسطة للمذاكرة.
+    </p>
+
+    <h2>15. أوامر GitHub</h2>
+    <pre>git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/amnahabib99/coffe_mang.git
+git push -u origin main</pre>
+
+    <p>إذا كان remote موجودا سابقا:</p>
+    <pre>git remote set-url origin https://github.com/amnahabib99/coffe_mang.git</pre>
+
+    <p>أوامر المتابعة:</p>
+    <pre>git status
+git log --oneline
+git add .
+git commit -m "message"
+git push</pre>
+
+    <h2>16. تسجيل الدخول الافتراضي</h2>
+    <pre>username: admin
+password: admin123</pre>
+
+    <h2>17. فتح قاعدة البيانات</h2>
+    <pre>mysql -u root -p coffee_shop_db</pre>
+    <p>أوامر MySQL مفيدة:</p>
+    <pre>SHOW DATABASES;
+USE coffee_shop_db;
+SHOW TABLES;
+SELECT * FROM users;
+SELECT * FROM products;
+SELECT * FROM orders;
+SELECT * FROM order_items;</pre>
+
+    <h2>18. الإجابة المختصرة للمناقشة</h2>
+    <p>
+        المشروع هو نظام إدارة مقهى بلغة Java. استخدمت Maven لتنظيم المشروع، وSwing لبناء الواجهة،
+        وMySQL لتخزين البيانات، وJDBC للاتصال. قسمت المشروع إلى models و services و repositories و gui
+        و database و exceptions و interfaces. طبقت مفاهيم OOP مثل encapsulation و inheritance و polymorphism
+        و abstract class و interfaces و overriding و overloading و inner class و exception handling.
+        النظام يعمل فعليا، يفتح واجهة رسومية، يتصل بقاعدة البيانات، ويدير المستخدمين والمنتجات والطلبات والفواتير والتقارير.
+    </p>
+
+    <h2>19. ملفات لا ترفع إلى GitHub</h2>
+    <pre>target/
+.local-db.properties
+.private-docs/</pre>
+
+    <p class="small">
+        نهاية الملف. هذا HTML واحد فقط، مخصص للمذاكرة والشرح، وليس بديلا عن Javadoc الرسمي إذا طلب الدكتور تشغيل أمر Javadoc.
+    </p>
+</main>
+</body>
+</html>

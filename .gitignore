@@ -4,3 +4,4 @@ target/
 .idea/
 *.log
 .local-db.properties
+.private-docs/

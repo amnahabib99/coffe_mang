@@ -1,5 +1,11 @@
 package com.coffeeshop.database;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Properties;
+
 /**
  * Central MySQL connection configuration.
  */
@@ -33,6 +39,23 @@ public final class DatabaseConfig {
             return fromProperty;
         }
         String fromEnvironment = System.getenv("COFFEE_DB_PASSWORD");
-        return fromEnvironment == null ? "" : fromEnvironment;
+        if (fromEnvironment != null && !fromEnvironment.isBlank()) {
+            return fromEnvironment;
+        }
+        return readLocalPassword();
+    }
+
+    private static String readLocalPassword() {
+        Path localFile = Path.of(".local-db.properties");
+        if (!Files.exists(localFile)) {
+            return "";
+        }
+        Properties properties = new Properties();
+        try (InputStream inputStream = Files.newInputStream(localFile)) {
+            properties.load(inputStream);
+            return properties.getProperty("db.password", "");
+        } catch (IOException ex) {
+            return "";
+        }
     }
 }

@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -75,6 +76,7 @@ public class MainFrame extends JFrame {
         sidebarScroll.setBorder(BorderFactory.createEmptyBorder());
         sidebarScroll.getViewport().setBackground(UiTheme.PRIMARY);
         sidebar.add(sidebarScroll, BorderLayout.CENTER);
+        sidebar.add(createLogoutButton(), BorderLayout.SOUTH);
 
         root.add(sidebar, BorderLayout.LINE_START);
         root.add(contentPanel, BorderLayout.CENTER);
@@ -94,5 +96,31 @@ public class MainFrame extends JFrame {
                 BorderFactory.createEmptyBorder(10, 16, 10, 16)));
         button.addActionListener(event -> cardLayout.show(contentPanel, name));
         menu.add(button);
+    }
+
+    private JButton createLogoutButton() {
+        JButton logoutButton = new JButton("تسجيل الخروج");
+        UiTheme.dangerButton(logoutButton);
+        logoutButton.setPreferredSize(new Dimension(250, 46));
+        logoutButton.setHorizontalAlignment(SwingConstants.CENTER);
+        logoutButton.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(java.awt.Color.WHITE, 1),
+                BorderFactory.createEmptyBorder(10, 16, 10, 16)));
+        logoutButton.addActionListener(event -> confirmLogout());
+        return logoutButton;
+    }
+
+    private void confirmLogout() {
+        int choice = JOptionPane.showConfirmDialog(
+                this,
+                "هل أنت متأكد من تسجيل الخروج؟",
+                "تأكيد تسجيل الخروج",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (choice == JOptionPane.YES_OPTION) {
+            SessionManager.clear();
+            dispose();
+            new LoginFrame().setVisible(true);
+        }
     }
 }

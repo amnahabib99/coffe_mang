@@ -68,7 +68,7 @@ public class CategoryRepository implements Repository<Category> {
     public List<Category> findAll() throws Exception {
         List<Category> categories = new ArrayList<>();
         try (Connection connection = DatabaseManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM categories ORDER BY name");
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM categories ORDER BY id");
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 categories.add(map(resultSet));

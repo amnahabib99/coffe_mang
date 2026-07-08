@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -45,38 +46,53 @@ public class CategoryPanel extends JPanel {
 
     private void buildForm() {
         add(UiTheme.title("إدارة التصنيفات"), BorderLayout.NORTH);
-        JPanel form = new JPanel(new GridLayout(2, 5, 6, 6));
+
+        JPanel form = new JPanel(new BorderLayout(12, 8));
         form.setBackground(UiTheme.SURFACE);
+        form.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
         UiTheme.field(idField);
         UiTheme.field(nameField);
         UiTheme.field(descriptionField);
-        addHeader(form, "الرقم");
-        addHeader(form, "اسم التصنيف");
-        addHeader(form, "الوصف");
-        form.add(new JLabel());
-        form.add(new JLabel());
-        form.add(idField);
-        form.add(nameField);
-        form.add(descriptionField);
+
+        JPanel fields = new JPanel(new GridLayout(1, 3, 8, 8));
+        fields.setBackground(UiTheme.SURFACE);
+        fields.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        fields.add(fieldGroup("الرقم", idField));
+        fields.add(fieldGroup("اسم التصنيف", nameField));
+        fields.add(fieldGroup("الوصف", descriptionField));
+
         JButton addButton = new JButton("إضافة");
         JButton updateButton = new JButton("تحديث");
         JButton deleteButton = new JButton("حذف");
         UiTheme.saveButton(addButton);
         UiTheme.refreshButton(updateButton);
         UiTheme.dangerButton(deleteButton);
-        form.add(addButton);
-        form.add(updateButton);
-        form.add(deleteButton);
+
+        JPanel actions = new JPanel(new GridLayout(1, 3, 8, 8));
+        actions.setBackground(UiTheme.SURFACE);
+        actions.add(deleteButton);
+        actions.add(updateButton);
+        actions.add(addButton);
+
+        form.add(fields, BorderLayout.CENTER);
+        form.add(actions, BorderLayout.WEST);
         add(UiTheme.card(form), BorderLayout.SOUTH);
+
         addButton.addActionListener(event -> addCategory());
         updateButton.addActionListener(event -> updateCategory());
         deleteButton.addActionListener(event -> deleteCategory());
     }
 
-    private void addHeader(JPanel form, String text) {
+    private JPanel fieldGroup(String text, JTextField field) {
+        JPanel group = new JPanel(new BorderLayout(4, 4));
+        group.setBackground(UiTheme.SURFACE);
+        group.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         JLabel label = new JLabel(text);
         UiTheme.label(label);
-        form.add(label);
+        group.add(label, BorderLayout.NORTH);
+        group.add(field, BorderLayout.CENTER);
+        return group;
     }
 
     private void addCategory() {

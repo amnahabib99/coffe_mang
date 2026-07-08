@@ -69,7 +69,7 @@ public class ProductRepository implements Repository<Product> {
     public List<Product> findAll() throws Exception {
         List<Product> products = new ArrayList<>();
         try (Connection connection = DatabaseManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(productQuery() + " ORDER BY p.name");
+             PreparedStatement statement = connection.prepareStatement(productQuery() + " ORDER BY p.id");
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 products.add(map(resultSet));
@@ -88,7 +88,7 @@ public class ProductRepository implements Repository<Product> {
     public List<Product> findByCategory(int categoryId) throws Exception {
         List<Product> products = new ArrayList<>();
         try (Connection connection = DatabaseManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(productQuery() + " WHERE c.id=? ORDER BY p.name")) {
+             PreparedStatement statement = connection.prepareStatement(productQuery() + " WHERE c.id=? ORDER BY p.id")) {
             statement.setInt(1, categoryId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
